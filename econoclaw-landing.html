@@ -508,29 +508,77 @@
     <h2 style="font-family:'Righteous',cursive; font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px;">Your Agents Are<br>Waiting at the Desk.</h2>
     <p style="color:rgba(255,255,255,0.65); font-weight:300; font-size:1rem; max-width:500px; margin:0 auto;">Fill this out. We'll reach out within 24 hours to schedule your 30-minute setup call. Agents go live same day.</p>
     <div class="form-wrap">
-      <form action="https://formspree.io/f/mnjgqrpv" method="POST">
+      <form id="claw-form" data-product="econoclaw" style="display:flex;flex-direction:column;gap:14px;">
         <div class="form-row">
-          <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
-          <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required></div>
+          <div class="form-field"><label>First Name</label><input name="firstName" required placeholder="First Name"></div>
+          <div class="form-field"><label>Last Name</label><input name="lastName" placeholder="Last Name"></div>
         </div>
-        <div class="form-field"><label>Business Name</label><input type="text" name="business_name" placeholder="Your Business" required></div>
-        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
-        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="(850) 000-0000"></div>
+        <div class="form-field"><label>Business Name</label><input name="businessName" placeholder="Business Name"></div>
+        <div class="form-field"><label>Email</label><input name="email" type="email" required placeholder="your@email.com"></div>
+        <div class="form-field"><label>Phone</label><input name="phone" type="tel" placeholder="(850) 000-0000"></div>
         <div class="form-field">
           <label>Which Room?</label>
-          <select name="plan" required>
+          <select name="selectedPlan">
             <option value="">Choose your room...</option>
-            <option value="standard">Standard Room — $500 + $99/mo</option>
-            <option value="suite">Suite — $1,500 + $249/mo</option>
-            <option value="penthouse">Penthouse (White Label) — $2,500 + $499/mo</option>
-            <option value="unsure">Not sure yet — just want to talk</option>
+            <option value="Standard Room — $500 + $99/mo">Standard Room — $500 + $99/mo</option>
+            <option value="Suite — $1,500 + $249/mo">Suite — $1,500 + $249/mo</option>
+            <option value="Penthouse (White Label) — $2,500 + $499/mo">Penthouse (White Label) — $2,500 + $499/mo</option>
+            <option value="Not sure yet — just want to talk">Not sure yet — just want to talk</option>
           </select>
         </div>
-        <div class="form-field"><label>What do you need your agents to do? (optional)</label><textarea name="goals" rows="3" placeholder="Answer phones, follow up leads, write content, monitor competitors..."></textarea></div>
-        <input type="hidden" name="source" value="EconoClaw Landing Page">
-        <button type="submit" class="form-submit">Check In — Deploy My Agents →</button>
+        <div class="form-field"><label>What do you need your agents to do? (optional)</label><textarea name="needs" rows="3" placeholder="Answer phones, follow up leads, write content, monitor competitors..."></textarea></div>
+        <div id="claw-form-status" style="display:none;padding:14px;border-radius:3px;font-size:14px;font-weight:bold;text-align:center;"></div>
+        <button type="submit" id="claw-submit" class="form-submit">Check In — Deploy My Agents →</button>
       </form>
       <p class="form-note">No commitment required. We talk, configure, and deploy — or you walk, no charge.</p>
+      <script>
+      (function() {
+        const INTAKE_URL = 'https://claw-dialer.vercel.app/api/intake';
+        const form = document.getElementById('claw-form');
+        const statusEl = document.getElementById('claw-form-status');
+        const submitBtn = document.getElementById('claw-submit');
+        if (!form) return;
+        const product = form.dataset.product || 'econoclaw';
+        function setStatus(msg, type) {
+          statusEl.style.display = 'block';
+          statusEl.textContent = msg;
+          statusEl.style.background = type === 'success' ? '#0D2E1A' : type === 'error' ? '#2E0D0D' : '#0D1825';
+          statusEl.style.color = type === 'success' ? '#2EFF9A' : type === 'error' ? '#FF3B3B' : '#14F1C6';
+          statusEl.style.border = 'none';
+        }
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.6';
+          submitBtn.textContent = 'Sending...';
+          setStatus('Routing to Chase...', 'info');
+          const data = {
+            product,
+            firstName: form.querySelector('[name="firstName"]')?.value?.trim() || '',
+            lastName: form.querySelector('[name="lastName"]')?.value?.trim() || '',
+            businessName: form.querySelector('[name="businessName"]')?.value?.trim() || '',
+            email: form.querySelector('[name="email"]')?.value?.trim() || '',
+            phone: form.querySelector('[name="phone"]')?.value?.trim() || '',
+            selectedPlan: form.querySelector('[name="selectedPlan"]')?.value || '',
+            needs: form.querySelector('[name="needs"]')?.value?.trim() || '',
+          };
+          try {
+            const r = await fetch(INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const result = await r.json();
+            if (!r.ok) throw new Error(result.error || 'Something went wrong.');
+            setStatus('✓ Got it, ' + data.firstName + '. Chase will reach out within 24 hours. Check your email.', 'success');
+            submitBtn.textContent = '✓ Submitted';
+            submitBtn.style.background = '#2EFF9A';
+            submitBtn.style.color = '#080A0F';
+          } catch (err) {
+            setStatus('Something went wrong — email chase@solanasolarsolutions.com directly or call (850) 341-4324.', 'error');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.textContent = 'Try Again';
+          }
+        });
+      })();
+      </script>
     </div>
   </div>
 </section>
@@ -539,13 +587,9 @@
   <div class="footer-logo">Econo<span>Claw</span></div>
   <div class="footer-sub">BY SOLANA SOLAR SOLUTIONS · PENSACOLA, FL · CLAUDE-POWERED</div>
   <div class="footer-links">
-    <a href="mailto:chase@solanasolarsolutions.com">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#cba8a3aab8ae8bb8a4a7aaa5aab8a4a7aab9b8a4a7bebfa2a4a5b8e5a8a4a6">Contact</a>
     <a href="#what-you-get">Amenities</a>
     <a href="#rooms">Rooms</a>
     <a href="#checkin">Check In</a>
   </div>
-  <div class="footer-copy">© 2026 Solana Solar Solutions · Chase K Turnquest · EIN 41-2326568 · All rights reserved</div>
-</footer>
-
-</body>
-</html>
+  <div class="footer-copy">© 2026 Solana Solar Solutions · Chase K Turnquest · EIN 41-2326568 ·
