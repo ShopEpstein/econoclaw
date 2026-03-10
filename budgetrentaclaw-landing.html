@@ -3,1902 +3,593 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget Rent-A-Claw™ — Rent Claude AI Agents. No Commitment.</title>
-<meta name="description" content="Claude AI agents available by the day, week, or month. No setup fee. No contract. Full fleet. Drive away today.">
+<title>EconoClaw — Claude AI Agents. Budget Price. No Nonsense.</title>
+<meta name="description" content="Get a full Claude-powered AI workforce deployed for your business. 21 agents, AI call center, cloud automation. $500 setup + $99/mo. Clean rooms. Hot coffee. Claude.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --o: #FF5C00;
-  --o2: #E64F00;
-  --o3: #FF7A2B;
-  --n: #00205B;
-  --n2: #001540;
-  --n3: #003080;
-  --w: #FFFFFF;
-  --off: #F5F5F3;
-  --ink: #111111;
-  --muted: #888;
-  --border: #E0E0E0;
-}
+  :root {
+    --green: #2E7D32;
+    --green-light: #4CAF50;
+    --green-pale: #E8F5E9;
+    --yellow: #FFC107;
+    --brown: #5D4037;
+    --white: #FAFAF8;
+    --off: #F5F3EE;
+    --dark: #1A1A1A;
+    --text: #2C2C2C;
+    --muted: #6B6B6B;
+    --border: #D4D0C8;
+    --sign-red: #C62828;
+  }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-body {
-  background: var(--off);
-  color: var(--ink);
-  font-family: 'Barlow', sans-serif;
-  font-weight: 400;
-  overflow-x: hidden;
-}
+  body {
+    background: var(--off);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
 
-/* ─── TICKER ─── */
-.ticker {
-  background: var(--n);
-  overflow: hidden;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  border-bottom: 3px solid var(--o);
-}
-.ticker-track {
-  display: flex;
-  gap: 0;
-  animation: tick 28s linear infinite;
-  white-space: nowrap;
-}
-@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.ticker-item {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  padding: 0 32px;
-}
-.ticker-item .dot { color: var(--o); margin: 0 8px; }
-.ticker-item .hi { color: var(--o); }
+  .marquee-sign {
+    background: var(--sign-red);
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 28s linear infinite;
+    font-family: 'Righteous', cursive;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+  }
+  .marquee-inner span { margin: 0 40px; }
+  @keyframes marquee {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
 
-/* ─── HEADER ─── */
-header {
-  background: var(--o);
-  position: relative;
-  overflow: hidden;
-}
-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 5px;
-  background: var(--n);
-}
+  header { background: var(--green); padding: 0; }
+  .sign-outer { background: var(--green); padding: 32px 24px 0; text-align: center; }
+  .sign-poles { display: flex; justify-content: center; gap: 200px; margin-bottom: -2px; }
+  .pole { width: 12px; height: 40px; background: linear-gradient(to right, #555, #888, #555); border-radius: 2px; }
+  .sign-board {
+    background: var(--white);
+    border: 6px solid var(--yellow);
+    border-bottom: none;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 28px 40px 24px;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 0 0 3px rgba(255,193,7,0.2);
+  }
+  .sign-board::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 0;
+    border: 2px dashed rgba(255,193,7,0.35);
+    pointer-events: none;
+  }
+  .sign-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 5px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+  .sign-name { font-family: 'Righteous', cursive; font-size: clamp(3rem, 12vw, 6rem); color: var(--green); line-height: 1; }
+  .sign-name .claw { color: var(--sign-red); }
+  .sign-tagline { font-size: 1rem; font-weight: 400; color: var(--muted); margin-top: 8px; font-style: italic; }
+  .sign-stars { display: flex; justify-content: center; gap: 4px; margin-top: 12px; font-size: 1.1rem; align-items: center; }
+  .sign-stars span { font-size: 0.75rem; color: var(--muted); margin-left: 8px; font-style: italic; }
 
-/* diagonal slice */
-header::before {
-  content: '';
-  position: absolute;
-  top: 0; right: -10%;
-  width: 45%;
-  height: 100%;
-  background: var(--o2);
-  transform: skewX(-8deg);
-  pointer-events: none;
-}
+  .mascot-wrap { background: var(--green); display: flex; justify-content: center; padding: 24px 0 0; }
+  .crab { font-size: 80px; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); animation: crabBob 3s ease-in-out infinite; }
+  @keyframes crabBob {
+    0%,100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
 
-.header-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
+  .checkin-bar { background: var(--yellow); text-align: center; padding: 16px 24px; font-family: 'Righteous', cursive; font-size: 1rem; color: var(--dark); letter-spacing: 1px; border-bottom: 4px solid #b8860b; }
+  .checkin-bar span { color: var(--green); }
 
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  text-decoration: none;
-}
-.logo-emblem {
-  background: var(--n);
-  width: 72px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-.logo-emblem::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; right: -4px;
-  width: 100%; height: 100%;
-  border: 3px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
-.logo-words { line-height: 1; }
-.logo-budget {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  display: block;
-  margin-bottom: 4px;
-}
-.logo-name {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 3rem;
-  color: #fff;
-  letter-spacing: 2px;
-  line-height: 0.9;
-  display: block;
-}
-.logo-name .navy { color: var(--n); }
-.logo-tagline {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.65);
-  text-transform: uppercase;
-  display: block;
-  margin-top: 5px;
-}
+  nav { background: var(--white); border-bottom: 3px solid var(--green); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .nav-logo { font-family: 'Righteous', cursive; font-size: 1.3rem; color: var(--green); }
+  .nav-logo span { color: var(--sign-red); }
+  .nav-cta { background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; padding: 10px 24px; border: none; cursor: pointer; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--sign-red); }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.header-contact {
-  text-align: right;
-  font-family: 'Barlow Condensed', sans-serif;
-}
-.header-contact .label {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.6);
-  display: block;
-  text-transform: uppercase;
-  margin-bottom: 3px;
-}
-.header-contact .val {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #fff;
-  display: block;
-}
-.header-reserve {
-  background: var(--n);
-  color: #fff;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.1rem;
-  letter-spacing: 3px;
-  padding: 14px 32px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  white-space: nowrap;
-  display: inline-block;
-}
-.header-reserve:hover { background: var(--n2); transform: translateY(-2px); }
+  .hero { background: var(--white); padding: 72px 24px; border-bottom: 4px solid var(--border); }
+  .hero-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .hero-left h1 { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--green); line-height: 1.2; margin-bottom: 20px; }
+  .hero-left h1 em { font-style: normal; color: var(--sign-red); }
+  .hero-left p { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+  .hero-left p strong { color: var(--text); font-weight: 600; }
+  .rate-card { background: var(--green); color: #fff; padding: 28px 32px; display: inline-block; position: relative; margin-bottom: 28px; }
+  .rate-card::before { content: 'NIGHTLY RATE'; position: absolute; top: -11px; left: 16px; background: var(--yellow); color: var(--dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 3px 12px; }
+  .rate-amount { font-family: 'Righteous', cursive; font-size: 3.5rem; line-height: 1; }
+  .rate-amount sub { font-size: 1.4rem; }
+  .rate-period { font-size: 0.8rem; opacity: 0.7; letter-spacing: 2px; margin-top: 4px; }
+  .rate-setup { font-size: 0.85rem; opacity: 0.85; margin-top: 8px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-green { background: var(--green); color: #fff; font-weight: 600; font-size: 0.95rem; padding: 16px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; border-radius: 2px; }
+  .btn-green:hover { background: var(--sign-red); }
+  .btn-outline { background: transparent; color: var(--green); font-weight: 600; font-size: 0.95rem; padding: 16px 32px; border: 2px solid var(--green); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; border-radius: 2px; }
+  .btn-outline:hover { background: var(--green); color: #fff; }
 
-/* ─── NAV ─── */
-nav {
-  background: var(--n);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 3px solid var(--o);
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-links { display: flex; }
-.navl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  text-decoration: none;
-  padding: 15px 20px;
-  transition: color 0.2s;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -3px;
-}
-.navl:hover { color: #fff; border-bottom-color: var(--o); }
-.nav-cta {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1rem;
-  letter-spacing: 3px;
-  color: #fff;
-  background: var(--o);
-  text-decoration: none;
-  padding: 15px 28px;
-  transition: background 0.2s;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -3px;
-}
-.nav-cta:hover { background: var(--o2); }
+  .amenities-board { background: var(--off); border: 3px solid var(--border); padding: 32px 28px; position: relative; }
+  .amenities-board::before { content: '★ AMENITIES INCLUDED ★'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--green); color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 4px 16px; white-space: nowrap; }
+  .amenity { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .amenity:last-child { border-bottom: none; }
+  .amenity-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .amenity-text h4 { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 2px; }
+  .amenity-text p { font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.5; }
+  .new-badge { background: var(--sign-red); color: #fff; font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; padding: 2px 7px; margin-left: 6px; vertical-align: middle; }
 
-/* ─── HERO ─── */
-.hero {
-  background: var(--n);
-  position: relative;
-  overflow: hidden;
-  border-bottom: 6px solid var(--o);
-}
+  section { padding: 80px 24px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 5px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3rem); color: var(--green); line-height: 1.2; margin-bottom: 12px; }
 
-/* big diagonal BG letters */
-.hero-bg-text {
-  position: absolute;
-  bottom: -40px;
-  left: -20px;
-  font-family: 'Bebas Neue', cursive;
-  font-size: clamp(160px, 25vw, 320px);
-  color: rgba(255,255,255,0.025);
-  line-height: 1;
-  pointer-events: none;
-  white-space: nowrap;
-  user-select: none;
-}
+  .included-section { background: var(--white); }
+  .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3px; margin-top: 40px; }
+  .included-card { background: var(--off); padding: 36px 28px; border-left: 4px solid transparent; transition: border-color 0.2s; }
+  .included-card:hover { border-left-color: var(--green); }
+  .included-icon { font-size: 2rem; margin-bottom: 16px; }
+  .included-card h3 { font-family: 'Righteous', cursive; font-size: 1.1rem; color: var(--green); margin-bottom: 10px; }
+  .included-card p { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
+  .included-card p strong { color: var(--text); font-weight: 600; }
 
-.hero-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  gap: 0;
-  align-items: stretch;
-  position: relative;
-  z-index: 2;
-}
+  .directory-section { background: var(--off); }
+  .directory-board { background: var(--white); border: 3px solid var(--border); overflow: hidden; margin-top: 40px; }
+  .directory-header { background: var(--green); color: #fff; padding: 16px 24px; font-family: 'Righteous', cursive; font-size: 1rem; letter-spacing: 2px; display: flex; justify-content: space-between; align-items: center; }
+  .directory-header span { font-size: 0.75rem; opacity: 0.7; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .agent-row { display: grid; grid-template-columns: 140px 1fr auto; border-bottom: 1px solid var(--border); align-items: center; }
+  .agent-row:last-child { border-bottom: none; }
+  .agent-row:hover { background: var(--green-pale); }
+  .agent-num { padding: 13px 20px; font-family: 'Righteous', cursive; font-size: 0.9rem; color: var(--green); border-right: 1px solid var(--border); }
+  .agent-info { padding: 13px 20px; }
+  .agent-title { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+  .agent-dept { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+  .agent-status { padding: 13px 20px; font-size: 0.72rem; font-weight: 600; color: var(--green-light); letter-spacing: 1px; white-space: nowrap; }
+  .agent-status.voice { color: var(--sign-red); }
+  .agent-status.cloud { color: var(--brown); }
 
-/* LEFT */
-.hero-left {
-  padding: 72px 64px 72px 0;
-  border-right: 2px solid rgba(255,255,255,0.08);
-}
-.hero-eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--o);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 32px;
-  height: 2px;
-  background: var(--o);
-}
-.hero-h1 {
-  font-family: 'Bebas Neue', cursive;
-  font-size: clamp(4rem, 9vw, 8rem);
-  line-height: 0.9;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 28px;
-}
-.hero-h1 .orange { color: var(--o); }
-.hero-h1 .line2 { display: block; font-size: 0.6em; letter-spacing: 8px; color: rgba(255,255,255,0.4); }
+  .vs-section { background: var(--dark); color: #fff; }
+  .vs-section .section-label { color: var(--yellow); }
+  .vs-section .section-title { color: #fff; }
+  .vs-table { width: 100%; border-collapse: collapse; margin-top: 40px; font-size: 0.9rem; }
+  .vs-table th { font-family: 'Righteous', cursive; font-size: 0.88rem; letter-spacing: 1px; padding: 18px 20px; text-align: left; }
+  .vs-table th.col-them { background: #222; color: #888; }
+  .vs-table th.col-us { background: var(--green); color: #fff; }
+  .vs-table th.col-label { color: #555; }
+  .vs-table td { padding: 13px 20px; border-bottom: 1px solid #2a2a2a; }
+  .vs-table td.col-label { color: #999; font-weight: 500; }
+  .vs-table td.col-them { background: #161616; color: #666; }
+  .vs-table td.col-us { background: #0d1f0e; color: #ccc; }
+  .check { color: #4CAF50; font-weight: 700; }
+  .cross { color: #444; }
+  .hi { color: var(--green-light); font-weight: 600; }
 
-.hero-copy {
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.8;
-  max-width: 500px;
-  margin-bottom: 40px;
-}
-.hero-copy strong { color: #fff; font-weight: 600; }
+  .rooms-section { background: var(--green-pale); }
+  .rooms-header { text-align: center; margin-bottom: 48px; }
+  .rooms-header h2 { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3rem); color: var(--green); }
+  .rooms-header p { font-size: 1rem; color: var(--muted); margin-top: 12px; font-weight: 300; }
+  .rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3px; }
+  .room-card { background: var(--white); padding: 40px 32px; border-top: 5px solid var(--border); position: relative; transition: border-top-color 0.2s; }
+  .room-card:hover { border-top-color: var(--green); }
+  .room-card.featured { border-top-color: var(--yellow); background: var(--green); color: #fff; }
+  .room-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--yellow); color: var(--dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 4px 16px; white-space: nowrap; }
+  .room-name { font-family: 'Righteous', cursive; font-size: 1.1rem; color: var(--green); letter-spacing: 1px; margin-bottom: 4px; }
+  .room-card.featured .room-name { color: var(--yellow); }
+  .room-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+  .room-card.featured .room-desc { color: rgba(255,255,255,0.6); }
+  .room-price { font-family: 'Righteous', cursive; font-size: 2.8rem; color: var(--green); line-height: 1; }
+  .room-card.featured .room-price { color: var(--yellow); }
+  .room-period { font-size: 0.8rem; color: var(--muted); letter-spacing: 2px; margin-bottom: 28px; margin-top: 4px; }
+  .room-card.featured .room-period { color: rgba(255,255,255,0.5); }
+  .room-features { list-style: none; margin-bottom: 32px; }
+  .room-feature { font-size: 0.88rem; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text); }
+  .room-card.featured .room-feature { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+  .room-feature::before { content: '✓  '; color: var(--green); font-weight: 700; }
+  .room-card.featured .room-feature::before { color: var(--yellow); }
+  .room-btn { display: block; text-align: center; padding: 15px; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; text-decoration: none; transition: all 0.2s; cursor: pointer; border-radius: 2px; }
+  .btn-g { background: var(--green); color: #fff; border: 2px solid var(--green); }
+  .btn-g:hover { background: var(--sign-red); border-color: var(--sign-red); }
+  .btn-o { background: transparent; color: var(--green); border: 2px solid var(--green); }
+  .btn-o:hover { background: var(--green); color: #fff; }
+  .btn-w { background: #fff; color: var(--green); border: 2px solid #fff; }
+  .btn-w:hover { background: var(--yellow); border-color: var(--yellow); color: var(--dark); }
 
-/* rate pills */
-.rates {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  margin-bottom: 40px;
-}
-.rate {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 20px 14px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-}
-.rate:hover, .rate.active {
-  background: rgba(255,92,0,0.18);
-  border-color: var(--o);
-}
-.rate.active::after {
-  content: '▼';
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--o);
-  font-size: 0.7rem;
-}
-.rate-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  display: block;
-  margin-bottom: 8px;
-}
-.rate-num {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 2.4rem;
-  color: var(--o);
-  line-height: 1;
-  display: block;
-}
-.rate-unit {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.3);
-  font-weight: 300;
-  letter-spacing: 1px;
-  display: block;
-  margin-top: 4px;
-}
+  .checkin-section { background: var(--green); color: #fff; }
+  .form-wrap { max-width: 600px; margin: 40px auto 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .form-field label { font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; color: rgba(255,255,255,0.55); text-transform: uppercase; }
+  .form-field input, .form-field select, .form-field textarea { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.2s; width: 100%; border-radius: 2px; }
+  .form-field input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-field input:focus, .form-field select:focus { border-color: var(--yellow); }
+  .form-field select option { background: #1a4a1a; }
+  .form-submit { width: 100%; background: var(--yellow); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 2px; padding: 18px; border: none; cursor: pointer; text-transform: uppercase; transition: background 0.2s; margin-top: 8px; border-radius: 2px; }
+  .form-submit:hover { background: #fff; }
+  .form-note { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 14px; font-weight: 300; }
 
-.hero-btns {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.btn-primary {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.15rem;
-  letter-spacing: 4px;
-  padding: 17px 44px;
-  background: var(--o);
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn-primary:hover { background: var(--o2); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,92,0,0.3); }
-.btn-ghost {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  padding: 17px 36px;
-  background: transparent;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.15);
-  cursor: pointer;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-}
-.btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  footer { background: var(--dark); padding: 48px 24px; text-align: center; border-top: 4px solid var(--green); }
+  .footer-logo { font-family: 'Righteous', cursive; font-size: 1.8rem; color: var(--green); margin-bottom: 4px; }
+  .footer-logo span { color: var(--sign-red); }
+  .footer-sub { font-size: 0.75rem; color: #555; letter-spacing: 2px; margin-bottom: 24px; font-weight: 300; }
+  .footer-links { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .footer-links a { color: #666; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green); }
+  .footer-copy { font-size: 0.72rem; color: #333; font-weight: 300; }
 
-/* RIGHT — lobster mascot panel */
-.hero-right {
-  background: rgba(255,255,255,0.03);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 32px;
-  position: relative;
-  overflow: hidden;
-  border-left: 1px solid rgba(255,255,255,0.06);
-}
-.hero-right::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(255,92,0,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* HERO LOBSTER — main mascot, animated */
-.mascot-main {
-  position: relative;
-  z-index: 2;
-  animation: mascotFloat 3.5s ease-in-out infinite;
-}
-@keyframes mascotFloat {
-  0%,100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-14px) rotate(1deg); }
-}
-
-.mascot-shadow {
-  width: 140px;
-  height: 18px;
-  background: rgba(0,0,0,0.25);
-  border-radius: 50%;
-  margin: 0 auto;
-  animation: shadowPulse 3.5s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
-}
-@keyframes shadowPulse {
-  0%,100% { transform: scaleX(1); opacity:0.5; }
-  50% { transform: scaleX(0.7); opacity:0.2; }
-}
-
-.mascot-tag {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.6rem;
-  letter-spacing: 4px;
-  color: #fff;
-  text-align: center;
-  margin-top: 20px;
-  position: relative;
-  z-index: 2;
-}
-.mascot-tag .role {
-  display: block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--o);
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-
-/* small floating stats */
-.hero-stat {
-  position: absolute;
-  z-index: 3;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(4px);
-  padding: 10px 16px;
-}
-.hero-stat:nth-child(1) { top: 60px; left: 20px; animation: statFloat1 4s ease-in-out infinite; }
-.hero-stat:nth-child(2) { bottom: 80px; right: 10px; animation: statFloat2 3.8s ease-in-out infinite 0.6s; }
-@keyframes statFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-@keyframes statFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
-.stat-num {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.5rem;
-  color: var(--o);
-  display: block;
-  line-height: 1;
-}
-.stat-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  display: block;
-  margin-top: 2px;
-}
-
-/* ─── FLEET ─── */
-.fleet {
-  background: var(--w);
-  padding: 96px 40px;
-  border-bottom: 4px solid var(--border);
-}
-.section-kicker {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--o);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.section-kicker::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 2px;
-  background: var(--o);
-}
-.section-h {
-  font-family: 'Bebas Neue', cursive;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  letter-spacing: 2px;
-  color: var(--n);
-  line-height: 0.95;
-  margin-bottom: 12px;
-}
-.section-sub {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 500px;
-  line-height: 1.7;
-  margin-bottom: 56px;
-}
-
-.fleet-cards {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 2px solid var(--border);
-}
-.fcard {
-  padding: 40px 32px;
-  border-right: 2px solid var(--border);
-  position: relative;
-  transition: background 0.25s;
-  display: flex;
-  flex-direction: column;
-}
-.fcard:last-child { border-right: none; }
-.fcard:hover { background: #FFFAF6; }
-.fcard.hot {
-  background: var(--n);
-  border-right-color: rgba(255,255,255,0.08);
-}
-.fcard.hot:hover { background: var(--n2); }
-
-.fcard-badge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--o);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #fff;
-  text-align: center;
-  padding: 5px;
-}
-
-.fcard-lob { margin: 24px 0 20px; display: flex; justify-content: center; }
-
-.fcard-class {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.fcard.hot .fcard-class { color: var(--o); }
-.fcard:not(.hot) .fcard-class { color: var(--o); }
-
-.fcard-name {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-}
-.fcard.hot .fcard-name { color: #fff; }
-.fcard:not(.hot) .fcard-name { color: var(--n); }
-
-.fcard-line {
-  font-size: 0.82rem;
-  font-style: italic;
-  margin-bottom: 20px;
-}
-.fcard.hot .fcard-line { color: rgba(255,255,255,0.4); }
-.fcard:not(.hot) .fcard-line { color: var(--muted); }
-
-.fcard-price {
-  margin: 16px 0 4px;
-}
-.fcard-from {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 4px;
-}
-.fcard.hot .fcard-from { color: rgba(255,255,255,0.35); }
-.fcard:not(.hot) .fcard-from { color: var(--muted); }
-
-.fcard-amount {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 3.2rem;
-  line-height: 1;
-  display: inline;
-}
-.fcard.hot .fcard-amount { color: var(--o); }
-.fcard:not(.hot) .fcard-amount { color: var(--n); }
-
-.fcard-per {
-  font-size: 0.8rem;
-  font-weight: 300;
-  margin-left: 4px;
-}
-.fcard.hot .fcard-per { color: rgba(255,255,255,0.4); }
-.fcard:not(.hot) .fcard-per { color: var(--muted); }
-
-.fcard-periods {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin: 6px 0 20px;
-}
-.fcard.hot .fcard-periods { color: rgba(255,255,255,0.3); }
-.fcard:not(.hot) .fcard-periods { color: var(--muted); }
-
-.fcard-features {
-  list-style: none;
-  flex: 1;
-  margin-bottom: 28px;
-  border-top: 1px solid;
-  padding-top: 18px;
-}
-.fcard.hot .fcard-features { border-top-color: rgba(255,255,255,0.08); }
-.fcard:not(.hot) .fcard-features { border-top-color: var(--border); }
-
-.fcard-feat {
-  font-size: 0.85rem;
-  font-weight: 400;
-  padding: 8px 0;
-  border-bottom: 1px solid;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.4;
-}
-.fcard.hot .fcard-feat { border-bottom-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); }
-.fcard:not(.hot) .fcard-feat { border-bottom-color: var(--border); color: #444; }
-.fcard-feat::before { content: '—'; color: var(--o); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
-
-.fcard-btn {
-  display: block;
-  text-align: center;
-  padding: 14px;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1rem;
-  letter-spacing: 4px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: none;
-}
-.btn-full-o { background: var(--o); color: #fff; }
-.btn-full-o:hover { background: var(--o2); }
-.btn-full-n { background: var(--n); color: #fff; }
-.btn-full-n:hover { background: var(--n2); }
-.btn-out-n { background: transparent; color: var(--n); border: 2px solid var(--n); }
-.btn-out-n:hover { background: var(--n); color: #fff; }
-
-/* ─── FULL TANK ─── */
-.fulltank {
-  background: var(--off);
-  padding: 96px 40px;
-  border-bottom: 4px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.fulltank::before {
-  content: 'INCLUDED';
-  position: absolute;
-  right: -60px;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  font-family: 'Bebas Neue', cursive;
-  font-size: 9rem;
-  color: rgba(0,0,0,0.04);
-  pointer-events: none;
-  white-space: nowrap;
-}
-.fulltank-inner { max-width: 1120px; margin: 0 auto; }
-.fulltank-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-}
-.ft-card {
-  background: var(--w);
-  padding: 36px 28px;
-  border-top: 4px solid transparent;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-}
-.ft-card:hover { border-top-color: var(--o); transform: translateY(-4px); }
-.ft-card.new-card { border-top-color: var(--o); }
-.ft-new {
-  position: absolute;
-  top: 0; right: 0;
-  background: var(--o);
-  color: #fff;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.55rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  padding: 3px 10px;
-}
-.ft-icon {
-  width: 52px; height: 52px;
-  background: var(--n);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-.ft-h {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--n);
-  margin-bottom: 10px;
-}
-.ft-p {
-  font-size: 0.88rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.75;
-}
-.ft-p strong { color: var(--ink); font-weight: 600; }
-
-/* ─── VS TABLE ─── */
-.vs-section {
-  background: var(--n);
-  padding: 96px 40px;
-  border-bottom: 6px solid var(--o);
-  position: relative;
-  overflow: hidden;
-}
-.vs-section::after {
-  content: 'VS';
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Bebas Neue', cursive;
-  font-size: 18rem;
-  color: rgba(255,255,255,0.02);
-  pointer-events: none;
-}
-.vs-section .section-kicker { color: var(--o); }
-.vs-section .section-h { color: #fff; }
-.vs-section .section-sub { color: rgba(255,255,255,0.45); }
-
-.vs-inner { max-width: 1000px; margin: 0 auto; }
-.vs-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  font-size: 0.9rem;
-}
-.vs-table thead tr { background: transparent; }
-.vs-table thead th {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  padding: 12px 22px;
-  text-align: left;
-}
-.th-label { color: rgba(255,255,255,0.25); }
-.th-them { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.35); }
-.th-us { background: var(--o); color: #fff; }
-.vs-table tbody td {
-  padding: 14px 22px;
-  font-weight: 400;
-}
-.vs-table tbody tr:hover td { filter: brightness(1.08); }
-.td-label { color: rgba(255,255,255,0.5); font-weight: 500; font-size: 0.85rem; }
-.td-them { background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.3); }
-.td-us { background: rgba(255,92,0,0.12); color: rgba(255,255,255,0.85); }
-.td-us .hi { color: var(--o); font-weight: 700; }
-.chk { color: #4ade80; font-weight: 700; }
-.crs { color: rgba(255,255,255,0.15); }
-
-/* ─── HOW ─── */
-.how {
-  background: var(--w);
-  padding: 96px 40px;
-  border-bottom: 4px solid var(--border);
-}
-.how-inner { max-width: 1120px; margin: 0 auto; }
-.how-steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  margin-top: 56px;
-  border: 2px solid var(--border);
-  counter-reset: steps;
-}
-.hstep {
-  padding: 36px 24px;
-  border-right: 2px solid var(--border);
-  position: relative;
-  counter-increment: steps;
-  transition: background 0.2s;
-}
-.hstep:last-child { border-right: none; }
-.hstep:hover { background: #FFFAF6; }
-.hstep::before {
-  content: '0' counter(steps);
-  font-family: 'Bebas Neue', cursive;
-  font-size: 3.5rem;
-  color: rgba(0,32,91,0.06);
-  line-height: 1;
-  display: block;
-  margin-bottom: 16px;
-}
-.hstep-icon {
-  font-size: 1.5rem;
-  margin-bottom: 14px;
-  display: block;
-}
-.hstep-h {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--n);
-  margin-bottom: 8px;
-}
-.hstep-p {
-  font-size: 0.82rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.hstep-p strong { color: var(--ink); font-weight: 600; }
-
-/* connector arrow between steps */
-.hstep:not(:last-child)::after {
-  content: '→';
-  position: absolute;
-  top: 36px;
-  right: -14px;
-  font-size: 1.1rem;
-  color: var(--o);
-  z-index: 2;
-  font-weight: 700;
-}
-
-/* ─── FORM ─── */
-.reserve {
-  background: var(--o);
-  padding: 96px 40px;
-  position: relative;
-  overflow: hidden;
-}
-.reserve::before {
-  content: '';
-  position: absolute;
-  bottom: -80px; right: -80px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 60%);
-  pointer-events: none;
-}
-.reserve-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 520px;
-  gap: 80px;
-  align-items: start;
-  position: relative;
-  z-index: 2;
-}
-.reserve-left { color: #fff; }
-.reserve-left .section-kicker { color: var(--n); }
-.reserve-left .section-h { color: #fff; }
-.reserve-left .section-sub { color: rgba(255,255,255,0.75); margin-bottom: 0; }
-
-/* lobster row in reserve section */
-.reserve-lobs {
-  display: flex;
-  align-items: flex-end;
-  gap: 16px;
-  margin-top: 40px;
-}
-.rlob { text-align: center; }
-.rlob-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  margin-top: 8px;
-  display: block;
-}
-
-/* FORM PANEL */
-.reserve-form {
-  background: var(--w);
-  border-top: 6px solid var(--n);
-  padding: 36px 32px;
-  box-shadow: -12px 12px 0 rgba(0,0,0,0.15);
-}
-.form-head {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--border);
-}
-.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-.f-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-.f-field label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.f-field input, .f-field select, .f-field textarea {
-  background: var(--off);
-  border: 2px solid var(--border);
-  color: var(--ink);
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 400;
-  padding: 12px 14px;
-  outline: none;
-  transition: border-color 0.2s;
-  width: 100%;
-}
-.f-field input:focus, .f-field select:focus { border-color: var(--o); }
-.f-field select option { background: #fff; }
-.f-submit {
-  width: 100%;
-  background: var(--n);
-  color: #fff;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.2rem;
-  letter-spacing: 5px;
-  padding: 18px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.f-submit:hover { background: var(--n2); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-.f-note { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 12px; font-weight: 300; }
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--n2);
-  padding: 52px 40px;
-  border-top: 5px solid var(--o);
-}
-.foot-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-.foot-logo {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.6rem;
-  letter-spacing: 2px;
-  color: #fff;
-}
-.foot-logo span { color: var(--o); }
-.foot-sub {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.3);
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
-.foot-links a {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.4);
-  text-decoration: none;
-  transition: color 0.2s;
-  letter-spacing: 1px;
-}
-.foot-links a:hover { color: var(--o); }
-.foot-copy {
-  width: 100%;
-  text-align: center;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.2);
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  font-weight: 300;
-  letter-spacing: 1px;
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
-  .fleet-cards { grid-template-columns: 1fr; }
-  .fcard { border-right: none; border-bottom: 2px solid var(--border); }
-  .fcard.hot { border-bottom-color: rgba(255,255,255,0.08); }
-  .fulltank-grid { grid-template-columns: 1fr 1fr; }
-  .how-steps { grid-template-columns: 1fr 1fr; }
-  .hstep:nth-child(2) { border-right: none; }
-  .hstep:nth-child(2)::after { display: none; }
-  .hstep:nth-child(4) { border-right: none; }
-  .hstep:nth-child(4)::after { display: none; }
-  .reserve-inner { grid-template-columns: 1fr; }
-  .reserve-left { display: none; }
-  .f-row { grid-template-columns: 1fr; }
-  .header-inner { flex-direction: column; align-items: flex-start; }
-  .nav-links { display: none; }
-  .rates { grid-template-columns: repeat(2,1fr); }
-  .hero-left { padding: 48px 24px; }
-}
-@media (max-width: 600px) {
-  .fulltank-grid { grid-template-columns: 1fr; }
-  .how-steps { grid-template-columns: 1fr; }
-  .hstep::after { display: none; }
-}
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .agent-row { grid-template-columns: 100px 1fr; }
+    .agent-status { display: none; }
+    nav { padding: 14px 20px; }
+    .sign-poles { gap: 120px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">No Setup Fee<span class="dot">·</span><span class="hi">$0 to start</span></span>
-    <span class="ticker-item">Cancel Anytime<span class="dot">·</span>No Contract</span>
-    <span class="ticker-item"><span class="hi">21 Claude Agents</span><span class="dot">·</span>Full Fleet</span>
-    <span class="ticker-item">AI Call Center<span class="dot">·</span><span class="hi">Answers your phone 24/7</span></span>
-    <span class="ticker-item">Cloud Agents<span class="dot">·</span>Run while you sleep</span>
-    <span class="ticker-item">From <span class="hi">$9/day</span><span class="dot">·</span>Day, Week, or Month</span>
-    <span class="ticker-item">No Setup Fee<span class="dot">·</span><span class="hi">$0 to start</span></span>
-    <span class="ticker-item">Cancel Anytime<span class="dot">·</span>No Contract</span>
-    <span class="ticker-item"><span class="hi">21 Claude Agents</span><span class="dot">·</span>Full Fleet</span>
-    <span class="ticker-item">AI Call Center<span class="dot">·</span><span class="hi">Answers your phone 24/7</span></span>
-    <span class="ticker-item">Cloud Agents<span class="dot">·</span>Run while you sleep</span>
-    <span class="ticker-item">From <span class="hi">$9/day</span><span class="dot">·</span>Day, Week, or Month</span>
+<div class="marquee-sign">
+  <div class="marquee-inner">
+    <span>NOW DEPLOYING CLAUDE AI AGENTS</span><span>★</span>
+    <span>FREE WIFI</span><span>★</span>
+    <span>AI CALL CENTER INCLUDED</span><span>★</span>
+    <span>CLOUD AGENTS 24/7</span><span>★</span>
+    <span>$99/MO</span><span>★</span>
+    <span>NO CHECKOUT TIME</span><span>★</span>
+    <span>NOW DEPLOYING CLAUDE AI AGENTS</span><span>★</span>
+    <span>FREE WIFI</span><span>★</span>
+    <span>AI CALL CENTER INCLUDED</span><span>★</span>
+    <span>CLOUD AGENTS 24/7</span><span>★</span>
+    <span>$99/MO</span><span>★</span>
+    <span>NO CHECKOUT TIME</span><span>★</span>
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <a class="logo" href="#">
-      <div class="logo-emblem">
-        <!-- compact orange lobster in navy box -->
-        <svg width="48" height="48" viewBox="0 0 80 80" fill="none">
-          <ellipse cx="40" cy="50" rx="18" ry="18" fill="#FF5C00"/>
-          <ellipse cx="40" cy="30" rx="15" ry="13" fill="#FF6E1A"/>
-          <circle cx="32" cy="26" r="4.5" fill="white"/>
-          <circle cx="48" cy="26" r="4.5" fill="white"/>
-          <circle cx="33" cy="26" r="2.2" fill="#111"/>
-          <circle cx="49" cy="26" r="2.2" fill="#111"/>
-          <!-- one brow up, one flat -->
-          <path d="M27 20 Q32 17 37 20" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <line x1="43" y1="19" x2="52" y2="20" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M34 36 Q40 40 46 36" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <!-- tie -->
-          <polygon points="40,40 38,44 40,54 42,44" fill="#FFD200"/>
-          <polygon points="38,40 42,40 40,44" fill="#E6B800"/>
-          <!-- antennae -->
-          <line x1="32" y1="18" x2="22" y2="8" stroke="#FF5C00" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="48" y1="18" x2="58" y2="8" stroke="#FF5C00" stroke-width="2.2" stroke-linecap="round"/>
-          <!-- claws -->
-          <path d="M24 47 Q10 40 6 48" stroke="#FF5C00" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <ellipse cx="4" cy="52" rx="8" ry="5" fill="#FF5C00"/>
-          <path d="M56 47 Q70 40 74 48" stroke="#FF5C00" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <ellipse cx="76" cy="52" rx="8" ry="5" fill="#FF5C00"/>
-        </svg>
-      </div>
-      <div class="logo-words">
-        <span class="logo-budget">Budget</span>
-        <span class="logo-name">Rent-A-<span class="navy">Claw</span>™</span>
-        <span class="logo-tagline">Claude AI · Rent, Don't Buy</span>
-      </div>
-    </a>
-    <div class="header-right">
-      <div class="header-contact">
-        <span class="label">Reservations</span>
-        <span class="val">chase@solanasolarsolutions.com</span>
-      </div>
-      <a href="#reserve" class="header-reserve">Reserve Now</a>
+  <div class="sign-outer">
+    <div class="sign-poles"><div class="pole"></div><div class="pole"></div></div>
+    <div class="sign-board">
+      <div class="sign-eyebrow">Claude-Powered AI Deployment</div>
+      <div class="sign-name">Econo<span class="claw">Claw</span></div>
+      <div class="sign-tagline">"Clean agents. Hot leads. Honest price."</div>
+      <div class="sign-stars">⭐⭐⭐⭐⭐ <span>5,000+ agents deployed</span></div>
     </div>
   </div>
+  <div class="mascot-wrap"><div class="crab">🦞</div></div>
 </header>
 
-<!-- NAV -->
+<div class="checkin-bar">
+  ✅ CHECK-IN ANYTIME &nbsp;·&nbsp; <span>CLAUDE AGENTS READY</span> &nbsp;·&nbsp; LIVE IN 24 HOURS &nbsp;·&nbsp; NO RESERVATION REQUIRED
+</div>
+
 <nav>
-  <div class="nav-inner">
-    <div class="nav-links">
-      <a href="#fleet" class="navl">The Fleet</a>
-      <a href="#included" class="navl">What's Included</a>
-      <a href="#compare" class="navl">Compare</a>
-      <a href="#how" class="navl">How It Works</a>
-    </div>
-    <a href="#reserve" class="nav-cta">Reserve a Claw →</a>
-  </div>
+  <div class="nav-logo">Econo<span>Claw</span></div>
+  <a href="#checkin" class="nav-cta">Check In Now</a>
 </nav>
 
-<!-- HERO -->
+<!-- Hero -->
 <section class="hero">
-  <div class="hero-bg-text">RENT-A-CLAW</div>
   <div class="hero-inner">
-
-    <!-- LEFT -->
     <div class="hero-left">
-      <div class="hero-eyebrow">No Contract · No Setup Fee · Cancel Anytime</div>
-      <h1 class="hero-h1">
-        Rent <span class="orange">Claude</span><br>
-        AI Agents.<br>
-        <span class="line2">Drive Away Today.</span>
-      </h1>
-      <p class="hero-copy">
-        Don't want to buy? <strong>Don't.</strong> Rent 21 Claude-powered AI agents by the day, week, or month.
-        <strong>No setup fee. No contract.</strong> Full fleet on day one — 21 agents, an AI call center that answers your phone,
-        and cloud automation running overnight.
-        Pick up today. Return whenever. <strong>Or just keep them forever.</strong>
+      <h1>A Full Claude AI<br>Workforce for<br><em>$99 a Month.</em></h1>
+      <p>
+        21 Claude-powered agents, an AI call center that <strong>answers and makes calls</strong>, 
+        and cloud agents that run 24/7 without you lifting a finger.
+        No agency markup. No retainer theater. Just Claude, working for your business, every day.
       </p>
-
-      <div class="rates">
-        <div class="rate active">
-          <span class="rate-label">Daily</span>
-          <span class="rate-num">$9</span>
-          <span class="rate-unit">per day</span>
-        </div>
-        <div class="rate">
-          <span class="rate-label">Weekly</span>
-          <span class="rate-num">$49</span>
-          <span class="rate-unit">per week</span>
-        </div>
-        <div class="rate">
-          <span class="rate-label">Monthly</span>
-          <span class="rate-num">$149</span>
-          <span class="rate-unit">per month</span>
-        </div>
-        <div class="rate">
-          <span class="rate-label">Annual</span>
-          <span class="rate-num">$999</span>
-          <span class="rate-unit">per year</span>
-        </div>
+      <div class="rate-card">
+        <div class="rate-amount">$99<sub>/mo</sub></div>
+        <div class="rate-period">+ $500 ONE-TIME SETUP · RATE LOCKED FOREVER</div>
+        <div class="rate-setup">Agencies charge $5,000–$15,000/mo for this.</div>
       </div>
-
       <div class="hero-btns">
-        <a href="#reserve" class="btn-primary">Reserve Your Agents →</a>
-        <a href="#fleet" class="btn-ghost">See the Fleet</a>
+        <a href="#checkin" class="btn-green">Check In — Deploy Now</a>
+        <a href="#rooms" class="btn-outline">See All Plans</a>
       </div>
     </div>
-
-    <!-- RIGHT — big animated lobster with floating stats -->
-    <div class="hero-right">
-
-      <div class="hero-stat">
-        <span class="stat-num">21</span>
-        <span class="stat-lbl">Claude Agents</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-num">24/7</span>
-        <span class="stat-lbl">AI Call Center</span>
-      </div>
-
-      <!-- BIG HERO LOBSTER — professional, smug, headset, clipboard, tie -->
-      <div class="mascot-main">
-        <svg width="280" height="340" viewBox="0 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- tail segments -->
-          <ellipse cx="140" cy="308" rx="30" ry="12" fill="#CC3300"/>
-          <ellipse cx="140" cy="293" rx="33" ry="13" fill="#DD3D00"/>
-          <ellipse cx="140" cy="278" rx="31" ry="12" fill="#CC3300"/>
-          <!-- tail fan -->
-          <ellipse cx="115" cy="322" rx="16" ry="8" fill="#BB2200" transform="rotate(-30 115 322)"/>
-          <ellipse cx="140" cy="326" rx="16" ry="8" fill="#CC3300"/>
-          <ellipse cx="165" cy="322" rx="16" ry="8" fill="#BB2200" transform="rotate(30 165 322)"/>
-
-          <!-- BODY -->
-          <ellipse cx="140" cy="220" rx="52" ry="58" fill="#DD3D00"/>
-          <!-- body segments -->
-          <path d="M92 205 Q140 200 188 205" stroke="#CC3300" stroke-width="2.5" fill="none"/>
-          <path d="M92 225 Q140 220 188 225" stroke="#CC3300" stroke-width="2.5" fill="none"/>
-          <path d="M94 245 Q140 240 186 245" stroke="#CC3300" stroke-width="2.5" fill="none"/>
-
-          <!-- SUIT JACKET -->
-          <path d="M100 198 L86 268 Q140 282 194 268 L180 198 Q162 208 140 210 Q118 208 100 198Z" fill="#1a1a1a"/>
-          <!-- lapels -->
-          <path d="M100 198 L118 220 L140 210" fill="#2a2a2a"/>
-          <path d="M180 198 L162 220 L140 210" fill="#2a2a2a"/>
-          <!-- shirt white -->
-          <rect x="133" y="208" width="14" height="36" rx="2" fill="white"/>
-          <!-- shirt buttons -->
-          <circle cx="140" cy="216" r="1.8" fill="#ddd"/>
-          <circle cx="140" cy="224" r="1.8" fill="#ddd"/>
-          <circle cx="140" cy="232" r="1.8" fill="#ddd"/>
-          <!-- ORANGE TIE -->
-          <polygon points="140,212 136,218 140,250 144,218" fill="#FF5C00"/>
-          <polygon points="136,212 144,212 140,218" fill="#E64F00"/>
-          <!-- pocket square -->
-          <path d="M98 214 L106 214 L106 222 L102 218 Z" fill="#FF5C00"/>
-
-          <!-- WALKING LEGS -->
-          <line x1="104" y1="238" x2="76" y2="262" stroke="#DD3D00" stroke-width="6.5" stroke-linecap="round"/>
-          <line x1="100" y1="252" x2="72" y2="273" stroke="#DD3D00" stroke-width="5.5" stroke-linecap="round"/>
-          <line x1="98" y1="264" x2="74" y2="282" stroke="#DD3D00" stroke-width="5" stroke-linecap="round"/>
-          <line x1="176" y1="238" x2="204" y2="262" stroke="#DD3D00" stroke-width="6.5" stroke-linecap="round"/>
-          <line x1="180" y1="252" x2="208" y2="273" stroke="#DD3D00" stroke-width="5.5" stroke-linecap="round"/>
-          <line x1="182" y1="264" x2="206" y2="282" stroke="#DD3D00" stroke-width="5" stroke-linecap="round"/>
-
-          <!-- LEFT ARM + CLAW (holding clipboard) -->
-          <path d="M100 205 Q64 190 48 205" stroke="#DD3D00" stroke-width="12" fill="none" stroke-linecap="round"/>
-          <ellipse cx="38" cy="214" rx="22" ry="15" fill="#DD3D00"/>
-          <ellipse cx="26" cy="205" rx="13" ry="9" fill="#EE4D00" transform="rotate(-25 26 205)"/>
-          <ellipse cx="28" cy="222" rx="11" ry="7" fill="#EE4D00" transform="rotate(20 28 222)"/>
-          <!-- clipboard on left claw -->
-          <rect x="14" y="186" width="36" height="44" rx="4" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
-          <rect x="28" y="183" width="10" height="7" rx="2" fill="#999"/>
-          <rect x="18" y="196" width="28" height="2" rx="1" fill="#ddd"/>
-          <rect x="18" y="202" width="28" height="2" rx="1" fill="#ddd"/>
-          <rect x="18" y="208" width="22" height="2" rx="1" fill="#ddd"/>
-          <rect x="18" y="214" width="26" height="2" rx="1" fill="#ddd"/>
-          <rect x="18" y="220" width="18" height="2" rx="1" fill="#FF5C00" opacity="0.7"/>
-
-          <!-- RIGHT ARM + CLAW (pointing/gesturing) -->
-          <path d="M180 205 Q216 190 232 205" stroke="#DD3D00" stroke-width="12" fill="none" stroke-linecap="round"/>
-          <ellipse cx="242" cy="214" rx="22" ry="15" fill="#DD3D00"/>
-          <ellipse cx="254" cy="205" rx="13" ry="9" fill="#EE4D00" transform="rotate(25 254 205)"/>
-          <ellipse cx="252" cy="222" rx="11" ry="7" fill="#EE4D00" transform="rotate(-20 252 222)"/>
-          <!-- pointing gesture on right -->
-          <path d="M242 207 Q256 200 260 210" stroke="#FF7722" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <circle cx="261" cy="212" r="4" fill="#FF5C00"/>
-
-          <!-- NECK -->
-          <rect x="130" y="148" width="20" height="18" rx="5" fill="#EE4D00"/>
-
-          <!-- HEAD -->
-          <ellipse cx="140" cy="130" rx="46" ry="42" fill="#EE4D00"/>
-
-          <!-- BIG EYES — smart, slightly smug -->
-          <circle cx="122" cy="124" r="14" fill="white"/>
-          <circle cx="158" cy="124" r="14" fill="white"/>
-          <!-- irises -->
-          <circle cx="125" cy="124" r="7" fill="#1a1a1a"/>
-          <circle cx="161" cy="124" r="7" fill="#1a1a1a"/>
-          <!-- highlights -->
-          <circle cx="127" cy="121" r="2.8" fill="white"/>
-          <circle cx="163" cy="121" r="2.8" fill="white"/>
-          <!-- secondary highlight -->
-          <circle cx="122" cy="128" r="1.2" fill="rgba(255,255,255,0.4)"/>
-          <circle cx="158" cy="128" r="1.2" fill="rgba(255,255,255,0.4)"/>
-
-          <!-- SMUG BROWS — one raised high, one slightly furrowed -->
-          <path d="M108 109 Q122 103 132 109" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M148 111 Q158 116 170 112" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-          <!-- SMIRK — knowing, one-sided -->
-          <path d="M128 142 Q140 150 152 144" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <!-- upturn at right corner -->
-          <path d="M151 144 Q155 141 152 144" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-
-          <!-- ANTENNAE -->
-          <path d="M122 90 Q104 66 88 50" stroke="#CC3300" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <circle cx="88" cy="50" r="4.5" fill="#CC3300"/>
-          <path d="M158 90 Q176 66 192 50" stroke="#CC3300" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <circle cx="192" cy="50" r="4.5" fill="#CC3300"/>
-
-          <!-- HEADSET BAND -->
-          <path d="M100 118 Q140 90 180 118" stroke="#111" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <!-- ear cups -->
-          <ellipse cx="100" cy="126" rx="14" ry="16" fill="#111"/>
-          <ellipse cx="100" cy="126" rx="8" ry="10" fill="#222"/>
-          <ellipse cx="180" cy="126" rx="14" ry="16" fill="#111"/>
-          <ellipse cx="180" cy="126" rx="8" ry="10" fill="#222"/>
-          <!-- boom mic -->
-          <path d="M180 136 Q200 150 206 166" stroke="#111" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <ellipse cx="209" cy="172" rx="7" ry="5.5" fill="#222"/>
-          <!-- green active light -->
-          <circle cx="209" cy="172" r="3" fill="#00FF88"/>
-          <!-- mic light glow -->
-          <circle cx="209" cy="172" r="6" fill="rgba(0,255,136,0.15)"/>
-
-          <!-- NAME BADGE -->
-          <rect x="114" y="258" width="52" height="22" rx="3" fill="white" stroke="#ddd" stroke-width="1.5"/>
-          <rect x="114" y="258" width="52" height="6" rx="2" fill="#FF5C00"/>
-          <text x="140" y="274" font-family="Arial" font-size="7.5" font-weight="bold" fill="#00205B" text-anchor="middle">AGENT CLAUDE</text>
-
-          <!-- SHADOW -->
-          <ellipse cx="140" cy="336" rx="72" ry="10" fill="rgba(0,0,0,0.1)"/>
-        </svg>
-      </div>
-      <div class="mascot-shadow"></div>
-
-      <div class="mascot-tag">
-        AGENT CLAUDE
-        <span class="role">Fleet Manager · Available Now</span>
+    <div>
+      <div class="amenities-board">
+        <div class="amenity">
+          <div class="amenity-icon">🧠</div>
+          <div class="amenity-text">
+            <h4>21 Claude AI Agents</h4>
+            <p>Content, data, research, social, security, engineering, brand — fully configured for your business.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">📞</div>
+          <div class="amenity-text">
+            <h4>AI Call Center <span class="new-badge">NEW</span></h4>
+            <p>Answers your phone. Makes outbound calls. Qualifies leads. Books appointments. 24/7, no hold music.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">☁️</div>
+          <div class="amenity-text">
+            <h4>Cloud Agents <span class="new-badge">NEW</span></h4>
+            <p>Always-on autonomous agents. Publish content, trigger workflows, send reports while you sleep.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">📡</div>
+          <div class="amenity-text">
+            <h4>Telegram Command Center</h4>
+            <p>Talk to every agent from your phone. One message, instant action across your whole workforce.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">🔒</div>
+          <div class="amenity-text">
+            <h4>Rate Locked Forever</h4>
+            <p>Founding customer pricing. What you pay today is what you pay forever. No exceptions.</p>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- FLEET -->
-<section class="fleet" id="fleet">
-  <div style="max-width:1120px; margin:0 auto;">
-    <div class="section-kicker">The Fleet</div>
-    <h2 class="section-h">Pick Your Class.</h2>
-    <p class="section-sub">Every class ships fully loaded. Same 21 agents, same call center, same cloud automation. The difference is scale.</p>
-  </div>
-  <div class="fleet-cards" style="max-width:1120px; margin:0 auto;">
-
-    <!-- ECONOMY -->
-    <div class="fcard">
-      <div class="fcard-class">Economy Class — Solo</div>
-      <div class="fcard-name">The Solo Claw</div>
-      <div class="fcard-line">"Gets you where you're going."</div>
-      <div class="fcard-lob">
-        <!-- compact dressed lobster -->
-        <svg width="100" height="128" viewBox="0 0 100 128" fill="none">
-          <ellipse cx="50" cy="123" rx="28" ry="5" fill="rgba(0,0,0,0.08)"/>
-          <ellipse cx="50" cy="93" rx="20" ry="22" fill="#DD3D00"/>
-          <path d="M32 85 L26 108 Q50 116 74 108 L68 85 Q60 91 50 92 Q40 91 32 85Z" fill="#1a1a1a"/>
-          <rect x="46" y="90" width="8" height="18" rx="1" fill="white"/>
-          <polygon points="50,92 48,96 50,110 52,96" fill="#FF5C00"/>
-          <ellipse cx="50" cy="62" rx="18" ry="16" fill="#EE4D00"/>
-          <circle cx="41" cy="58" r="6" fill="white"/>
-          <circle cx="59" cy="58" r="6" fill="white"/>
-          <circle cx="42.5" cy="58" r="3" fill="#111"/>
-          <circle cx="60.5" cy="58" r="3" fill="#111"/>
-          <circle cx="43.5" cy="57" r="1.2" fill="white"/>
-          <circle cx="61.5" cy="57" r="1.2" fill="white"/>
-          <path d="M36 50 Q41 46 46 50" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M54 49 Q59 52 64 50" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M43 70 Q50 75 57 70" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M57 70 Q59.5 68 57 70" stroke="#111" stroke-width="1.5" fill="none"/>
-          <line x1="41" y1="48" x2="32" y2="38" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-          <line x1="59" y1="48" x2="68" y2="38" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-          <!-- headset -->
-          <path d="M34 56 Q50 46 66 56" stroke="#111" stroke-width="3.5" fill="none"/>
-          <ellipse cx="34" cy="58" rx="6" ry="7" fill="#111"/>
-          <ellipse cx="66" cy="58" rx="6" ry="7" fill="#111"/>
-          <path d="M66 62 Q73 68 75 75" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <ellipse cx="77" cy="78" rx="4" ry="3" fill="#222"/>
-          <circle cx="77" cy="78" r="2" fill="#00FF88"/>
-          <path d="M30 87 Q16 80 10 87" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="7" cy="93" rx="10" ry="7" fill="#DD3D00"/>
-          <path d="M70 87 Q84 80 90 87" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="93" cy="93" rx="10" ry="7" fill="#DD3D00"/>
-        </svg>
+<!-- What's Included -->
+<section class="included-section" id="what-you-get">
+  <div class="container">
+    <div class="section-label">All Amenities</div>
+    <h2 class="section-title">Everything Included.<br>Nothing Extra.</h2>
+    <p style="color:var(--muted); font-weight:300; font-size:1rem; max-width:560px;">Every EconoClaw deployment ships with all three systems. This is not a chatbot. This is a workforce.</p>
+    <div class="included-grid">
+      <div class="included-card">
+        <div class="included-icon">🧠</div>
+        <h3>21 Claude AI Agents</h3>
+        <p>A full team trained on your business. MUXI the COO orchestrates everything. <strong>SCRIBE writes content. SAGE analyzes data. NOVA builds. VIBE runs social.</strong> 10 lead agents + 10 sub-agents + MUXI. Configured for your industry and goals.</p>
       </div>
-      <div class="fcard-price">
-        <span class="fcard-from">Starting From</span>
-        <span class="fcard-amount">$9</span><span class="fcard-per">/day</span>
+      <div class="included-card">
+        <div class="included-icon">📞</div>
+        <h3>AI Call Center <span class="new-badge">NEW</span></h3>
+        <p><strong>Inbound:</strong> Answers calls, qualifies leads, handles FAQs, books appointments — all day, all night. <strong>Outbound:</strong> Calls your lead list, follows up on quotes, reactivates cold prospects. Your phone never sleeps and never calls in sick.</p>
       </div>
-      <div class="fcard-periods">or $149/mo · $999/yr · no setup</div>
-      <ul class="fcard-features">
-        <li class="fcard-feat">All 21 Claude agents</li>
-        <li class="fcard-feat">AI call center — in &amp; outbound</li>
-        <li class="fcard-feat">Cloud agents running 24/7</li>
-        <li class="fcard-feat">1 business location</li>
-        <li class="fcard-feat">Telegram command interface</li>
-        <li class="fcard-feat">Cancel any time, no fees</li>
-      </ul>
-      <a href="#reserve" class="fcard-btn btn-out-n">Reserve Economy</a>
+      <div class="included-card">
+        <div class="included-icon">☁️</div>
+        <h3>Cloud Agents <span class="new-badge">NEW</span></h3>
+        <p>Autonomous agents running 24/7. <strong>Set the mission — they execute it.</strong> Schedule and publish content, monitor campaigns, send weekly reports, trigger workflows based on real-time data. No babysitting. No check-ins. Just results.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">🎯</div>
+        <h3>Business-Specific Training</h3>
+        <p>Your agents aren't generic chatbots. They're loaded with <strong>your company's knowledge, tone, FAQs, products, and goals</strong> during a 30-minute onboarding call. They sound like your best employee from day one.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">📡</div>
+        <h3>Telegram Command Center</h3>
+        <p>One interface to rule them all. <strong>Talk to any agent, trigger any workflow, pull any report</strong> — right from Telegram on your phone. No new software to learn. No dashboards to manage. Just type and go.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">⚡</div>
+        <h3>Live in 24 Hours</h3>
+        <p>Fill out the form. Schedule a 30-min call. <strong>Agents are live within 24 hours.</strong> No 6-week implementation. No endless discovery sprints. No agency theater. We move at the speed your business actually needs.</p>
+      </div>
     </div>
-
-    <!-- MIDSIZE — HOT -->
-    <div class="fcard hot">
-      <div class="fcard-badge">MOST RENTED</div>
-      <div class="fcard-class" style="margin-top:16px;">Midsize Class — Multi-Location</div>
-      <div class="fcard-name">The Multi Claw</div>
-      <div class="fcard-line">"Room for the whole operation."</div>
-      <div class="fcard-lob">
-        <!-- lobster with glasses + clipboard — manager tier -->
-        <svg width="110" height="138" viewBox="0 0 110 138" fill="none">
-          <ellipse cx="55" cy="133" rx="30" ry="5" fill="rgba(0,0,0,0.15)"/>
-          <ellipse cx="55" cy="103" rx="22" ry="24" fill="#DD3D00"/>
-          <path d="M35 94 L28 118 Q55 126 82 118 L75 94 Q66 100 55 101 Q44 100 35 94Z" fill="#1a1a1a"/>
-          <rect x="51" y="99" width="8" height="20" rx="1" fill="white"/>
-          <polygon points="55,101 53,105 55,121 57,105" fill="#FF5C00"/>
-          <ellipse cx="55" cy="68" rx="20" ry="18" fill="#EE4D00"/>
-          <circle cx="45" cy="64" r="7" fill="white"/>
-          <circle cx="65" cy="64" r="7" fill="white"/>
-          <!-- glasses -->
-          <circle cx="45" cy="64" r="9" stroke="white" stroke-width="2" fill="none"/>
-          <circle cx="65" cy="64" r="9" stroke="white" stroke-width="2" fill="none"/>
-          <line x1="54" y1="64" x2="56" y2="64" stroke="white" stroke-width="2"/>
-          <line x1="36" y1="64" x2="32" y2="62" stroke="white" stroke-width="2"/>
-          <line x1="74" y1="64" x2="78" y2="62" stroke="white" stroke-width="2"/>
-          <circle cx="46.5" cy="64" r="3.5" fill="#111"/>
-          <circle cx="66.5" cy="64" r="3.5" fill="#111"/>
-          <circle cx="47.5" cy="62.8" r="1.4" fill="white"/>
-          <circle cx="67.5" cy="62.8" r="1.4" fill="white"/>
-          <!-- one brow arched very high -->
-          <path d="M35 54 Q45 48 52 54" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <line x1="58" y1="55" x2="74" y2="56" stroke="white" stroke-width="3" stroke-linecap="round"/>
-          <path d="M47 78 Q55 83 63 79" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-          <path d="M63 79 Q66 76 63 79" stroke="white" stroke-width="1.8" fill="none"/>
-          <line x1="45" y1="51" x2="36" y2="40" stroke="#CC3300" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="65" y1="51" x2="74" y2="40" stroke="#CC3300" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M36 62 Q55 50 74 62" stroke="#111" stroke-width="4" fill="none"/>
-          <ellipse cx="36" cy="65" rx="7" ry="8" fill="#111"/>
-          <ellipse cx="74" cy="65" rx="7" ry="8" fill="#111"/>
-          <path d="M74 70 Q82 77 84 85" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <ellipse cx="86" cy="88" rx="5" ry="3.5" fill="#222"/>
-          <circle cx="86" cy="88" r="2.2" fill="#00FF88"/>
-          <circle cx="86" cy="88" r="5" fill="rgba(0,255,136,0.15)"/>
-          <path d="M33 96 Q17 88 10 96" stroke="#DD3D00" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <ellipse cx="6" cy="103" rx="12" ry="8" fill="#DD3D00"/>
-          <path d="M77 96 Q93 88 100 96" stroke="#DD3D00" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <ellipse cx="104" cy="103" rx="12" ry="8" fill="#DD3D00"/>
-          <!-- pointing right claw -->
-          <path d="M102 98 Q108 94 110 100" stroke="#FF6622" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-          <circle cx="111" cy="103" r="3.5" fill="#FF5C00"/>
-        </svg>
-      </div>
-      <div class="fcard-price">
-        <span class="fcard-from">Starting From</span>
-        <span class="fcard-amount">$29</span><span class="fcard-per" style="color:rgba(255,255,255,0.3)">/day</span>
-      </div>
-      <div class="fcard-periods">or $249/mo · $2,499/yr · no setup</div>
-      <ul class="fcard-features">
-        <li class="fcard-feat">Everything in Economy</li>
-        <li class="fcard-feat">Up to 5 business locations</li>
-        <li class="fcard-feat">Shared agent pool across locations</li>
-        <li class="fcard-feat">Consolidated reporting dashboard</li>
-        <li class="fcard-feat">Priority support response</li>
-        <li class="fcard-feat">Weekly performance reports</li>
-      </ul>
-      <a href="#reserve" class="fcard-btn btn-full-o">Reserve Midsize</a>
-    </div>
-
-    <!-- FULL SIZE -->
-    <div class="fcard">
-      <div class="fcard-class">Full Size Class — White Label</div>
-      <div class="fcard-name">The White Claw</div>
-      <div class="fcard-line">"Put your name on it. Drive it yourself."</div>
-      <div class="fcard-lob">
-        <!-- senior lobster with suit, keys, reading glasses low on beak -->
-        <svg width="100" height="128" viewBox="0 0 100 128" fill="none">
-          <ellipse cx="50" cy="123" rx="28" ry="5" fill="rgba(0,0,0,0.08)"/>
-          <ellipse cx="50" cy="93" rx="20" ry="22" fill="#DD3D00"/>
-          <path d="M32 85 L26 108 Q50 116 74 108 L68 85 Q60 91 50 92 Q40 91 32 85Z" fill="#00205B"/>
-          <rect x="46" y="90" width="8" height="18" rx="1" fill="white"/>
-          <polygon points="50,92 48,96 50,110 52,96" fill="#FF5C00"/>
-          <!-- pocket square - navy suit gets orange one -->
-          <path d="M30 90 L36 90 L36 96 L33 93 Z" fill="#FF5C00"/>
-          <ellipse cx="50" cy="62" rx="18" ry="16" fill="#EE4D00"/>
-          <circle cx="41" cy="58" r="6" fill="white"/>
-          <circle cx="59" cy="58" r="6" fill="white"/>
-          <!-- low reading glasses -->
-          <circle cx="41" cy="62" r="8" stroke="#888" stroke-width="1.8" fill="none"/>
-          <circle cx="59" cy="62" r="8" stroke="#888" stroke-width="1.8" fill="none"/>
-          <line x1="49" y1="62" x2="51" y2="62" stroke="#888" stroke-width="1.8"/>
-          <line x1="33" y1="62" x2="29" y2="60" stroke="#888" stroke-width="1.8"/>
-          <line x1="67" y1="62" x2="71" y2="60" stroke="#888" stroke-width="1.8"/>
-          <circle cx="42.5" cy="58" r="3" fill="#111"/>
-          <circle cx="60.5" cy="58" r="3" fill="#111"/>
-          <circle cx="43.5" cy="57" r="1.2" fill="white"/>
-          <circle cx="61.5" cy="57" r="1.2" fill="white"/>
-          <!-- both brows flat — been doing this a long time -->
-          <line x1="35" y1="50" x2="47" y2="50" stroke="#111" stroke-width="3" stroke-linecap="round"/>
-          <line x1="53" y1="50" x2="65" y2="50" stroke="#111" stroke-width="3" stroke-linecap="round"/>
-          <!-- flat experienced smile -->
-          <path d="M42 70 Q50 74 58 70" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line x1="41" y1="48" x2="32" y2="38" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-          <line x1="59" y1="48" x2="68" y2="38" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-          <!-- holding keys left claw -->
-          <path d="M30 87 Q16 80 10 87" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="7" cy="93" rx="10" ry="7" fill="#DD3D00"/>
-          <circle cx="3" cy="88" r="5" stroke="#FFD200" stroke-width="2.5" fill="none"/>
-          <line x1="7" y1="91" x2="12" y2="96" stroke="#FFD200" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="9" y1="94" x2="14" y2="96" stroke="#FFD200" stroke-width="2" stroke-linecap="round"/>
-          <!-- right claw giving thumbs up -->
-          <path d="M70 87 Q84 80 90 87" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="93" cy="93" rx="10" ry="7" fill="#DD3D00"/>
-          <path d="M89 89 Q93 84 96 90 Q100 84 97 94 L91 98 Z" fill="#FF7722"/>
-        </svg>
-      </div>
-      <div class="fcard-price">
-        <span class="fcard-from">Starting From</span>
-        <span class="fcard-amount">$59</span><span class="fcard-per">/day</span>
-      </div>
-      <div class="fcard-periods">or $499/mo · $4,999/yr · no setup</div>
-      <ul class="fcard-features">
-        <li class="fcard-feat">Everything in Midsize</li>
-        <li class="fcard-feat">Full white-label — your brand, your domain</li>
-        <li class="fcard-feat">Resell to your own clients</li>
-        <li class="fcard-feat">Unlimited client seats</li>
-        <li class="fcard-feat">Custom agent naming &amp; personas</li>
-        <li class="fcard-feat">Dedicated support line</li>
-      </ul>
-      <a href="#reserve" class="fcard-btn btn-full-n">Reserve Full Size</a>
-    </div>
-
   </div>
 </section>
 
-<!-- FULL TANK -->
-<section class="fulltank" id="included">
-  <div class="fulltank-inner">
-    <div class="section-kicker">Every Rental Includes</div>
-    <h2 class="section-h">Full Tank.<br>Every Time.</h2>
-    <p class="section-sub">No add-ons. No upgrades to unlock basic features. Every class leaves the lot fully loaded.</p>
-    <div class="fulltank-grid">
-      <div class="ft-card">
-        <div class="ft-icon">🧠</div>
-        <div class="ft-h">21 Claude Agents</div>
-        <p class="ft-p">A complete AI workforce in every rental. <strong>MUXI runs the fleet.</strong> SCRIBE writes content. SAGE reads your numbers. NOVA handles technical tasks. All 21, all yours.</p>
-      </div>
-      <div class="ft-card new-card">
-        <div class="ft-new">NEW</div>
-        <div class="ft-icon">📞</div>
-        <div class="ft-h">AI Call Center</div>
-        <p class="ft-p"><strong>Inbound:</strong> answers your phone, qualifies leads, books appointments around the clock. <strong>Outbound:</strong> calls your leads, follows up, reactivates cold contacts. Included in every class.</p>
-      </div>
-      <div class="ft-card new-card">
-        <div class="ft-new">NEW</div>
-        <div class="ft-icon">☁️</div>
-        <div class="ft-h">Cloud Agents 24/7</div>
-        <p class="ft-p">Set a mission and walk away. <strong>Cloud agents run continuously</strong> — publishing content, sending reports, triggering follow-ups — even when you're not watching.</p>
-      </div>
-      <div class="ft-card">
-        <div class="ft-icon">📲</div>
-        <div class="ft-h">Telegram Interface</div>
-        <p class="ft-p">Your entire agent fleet responds to a single message. <strong>Text them from your phone.</strong> No new apps. No dashboards to learn. Just talk.</p>
-      </div>
-      <div class="ft-card">
-        <div class="ft-icon">⚡</div>
-        <div class="ft-h">Live in 24 Hours</div>
-        <p class="ft-p">One 30-minute onboarding call. We configure everything. <strong>Your agents are running the same day.</strong> Pick up and drive.</p>
-      </div>
-      <div class="ft-card">
-        <div class="ft-icon">🔄</div>
-        <div class="ft-h">Return Anytime</div>
-        <p class="ft-p">No contracts. No cancellation fees. <strong>Hand back the keys whenever you want.</strong> Most customers don't — but knowing you can changes everything.</p>
-      </div>
+<!-- Agent Directory -->
+<section class="directory-section">
+  <div class="container">
+    <div class="section-label">The Staff</div>
+    <h2 class="section-title">Your 21-Agent Directory</h2>
+    <p style="color:var(--muted); font-weight:300; font-size:1rem;">Every agent. Every role. All reporting for duty.</p>
+    <div class="directory-board">
+      <div class="directory-header">STAFF DIRECTORY — ECONOCLAW DEPLOYMENT <span>ALL AGENTS ON DUTY 24/7</span></div>
+      <div class="agent-row"><div class="agent-num">MUXI</div><div class="agent-info"><div class="agent-title">Chief of Operations</div><div class="agent-dept">Orchestrates all 21 agents · Your AI COO</div></div><div class="agent-status cloud">☁️ COO</div></div>
+      <div class="agent-row"><div class="agent-num">JARVIS</div><div class="agent-info"><div class="agent-title">Chief of Staff / Router</div><div class="agent-dept">Routes tasks · Manages priorities · Delegates</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">DISPATCH</div><div class="agent-info"><div class="agent-title">Task Decomposer</div><div class="agent-dept">Breaks complex goals into executable steps</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SCRIBE</div><div class="agent-info"><div class="agent-title">Content & SEO Writer</div><div class="agent-dept">Blog posts · Landing pages · Ad copy · Articles</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">QUILL</div><div class="agent-info"><div class="agent-title">Email Copywriter</div><div class="agent-dept">Campaigns · Sequences · Cold outreach · Follow-ups</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SAGE</div><div class="agent-info"><div class="agent-title">Data Analyst</div><div class="agent-dept">Reports · Insights · Performance tracking · Forecasts</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">MINER</div><div class="agent-info"><div class="agent-title">Database Segmentation</div><div class="agent-dept">Contact lists · Audience targeting · Lead scoring</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">ATLAS</div><div class="agent-info"><div class="agent-title">Research Lead</div><div class="agent-dept">Market research · Industry analysis · Trend reports</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SCOUT</div><div class="agent-info"><div class="agent-title">Competitive Intelligence</div><div class="agent-dept">Monitors competitors · Flags opportunities</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">NOVA</div><div class="agent-info"><div class="agent-title">Engineer</div><div class="agent-dept">Builds · Deploys · Maintains · Integrates</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PATCH</div><div class="agent-info"><div class="agent-title">Bug Fixer</div><div class="agent-dept">Identifies and resolves issues immediately</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">VIBE</div><div class="agent-info"><div class="agent-title">Social Media Manager</div><div class="agent-dept">Posts · Scheduling · Brand voice · Engagement</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">ECHO</div><div class="agent-info"><div class="agent-title">Engagement Specialist</div><div class="agent-dept">Replies · Comments · Community management</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SENTINEL</div><div class="agent-info"><div class="agent-title">Security & Compliance</div><div class="agent-dept">Monitors risks · Flags policy issues</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SHIELD</div><div class="agent-info"><div class="agent-title">Compliance Auditor</div><div class="agent-dept">Keeps everything above board and documented</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">TRENDY</div><div class="agent-info"><div class="agent-title">Trend Analyst</div><div class="agent-dept">Spots what's hot before your competitors do</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PULSE</div><div class="agent-info"><div class="agent-title">Market Signals</div><div class="agent-dept">Real-time market intelligence · Opportunity alerts</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PIXEL</div><div class="agent-info"><div class="agent-title">Design & Brand</div><div class="agent-dept">Visual identity · Templates · Creative assets</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">BRUSH</div><div class="agent-info"><div class="agent-title">Template Builder</div><div class="agent-dept">Builds reusable, branded assets at scale</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">CLIP</div><div class="agent-info"><div class="agent-title">Summarizer</div><div class="agent-dept">Reports · Daily digests · Executive briefings</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">DIAL</div><div class="agent-info"><div class="agent-title">Voice Call Agent</div><div class="agent-dept">Inbound + outbound calls · Lead qualification · Appointment booking · Follow-ups</div></div><div class="agent-status voice">📞 VOICE</div></div>
     </div>
   </div>
 </section>
 
 <!-- VS -->
-<section class="vs-section" id="compare">
-  <div class="vs-inner">
-    <div class="section-kicker">The Comparison</div>
-    <h2 class="section-h">Rent vs. Buy vs.<br>Agency.</h2>
-    <p class="section-sub" style="margin-bottom:48px;">Buying is better long-term. Renting is better right now. Agencies are neither.</p>
+<section class="vs-section">
+  <div class="container">
+    <div class="section-label">The Math</div>
+    <h2 class="section-title" style="color:#fff;">Agencies Charge $5K/mo.<br>We Charge $99.</h2>
+    <p style="color:#666; font-weight:300; font-size:1rem;">Here's exactly what you're not paying for.</p>
     <table class="vs-table">
       <thead>
         <tr>
-          <th class="th-label"></th>
-          <th class="th-them">Buy (EconoClaw)</th>
-          <th class="th-them">AI Agency</th>
-          <th class="th-us">Budget Rent-A-Claw</th>
+          <th class="col-label"></th>
+          <th class="col-them">AI Agency</th>
+          <th class="col-them">Call Center Only</th>
+          <th class="col-us">EconoClaw</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="td-label">Upfront Cost</td>
-          <td class="td-them">$500 setup</td>
-          <td class="td-them">$3K – $8K</td>
-          <td class="td-us"><span class="hi">$0</span></td>
-        </tr>
-        <tr>
-          <td class="td-label">Try for One Day</td>
-          <td class="td-them"><span class="crs">✗</span></td>
-          <td class="td-them"><span class="crs">✗</span></td>
-          <td class="td-us"><span class="chk">✓</span> <span class="hi">$9/day</span></td>
-        </tr>
-        <tr>
-          <td class="td-label">Cancel Anytime</td>
-          <td class="td-them">Monthly billing</td>
-          <td class="td-them"><span class="crs">✗ 3–12mo contracts</span></td>
-          <td class="td-us"><span class="chk">✓</span> Any time</td>
-        </tr>
-        <tr>
-          <td class="td-label">All 21 Agents</td>
-          <td class="td-them"><span class="chk">✓</span></td>
-          <td class="td-them">Partial</td>
-          <td class="td-us"><span class="chk">✓</span> Full fleet</td>
-        </tr>
-        <tr>
-          <td class="td-label">AI Call Center</td>
-          <td class="td-them"><span class="chk">✓</span></td>
-          <td class="td-them"><span class="crs">✗ usually</span></td>
-          <td class="td-us"><span class="chk">✓</span> Included</td>
-        </tr>
-        <tr>
-          <td class="td-label">Cloud Agents 24/7</td>
-          <td class="td-them"><span class="chk">✓</span></td>
-          <td class="td-them">Rarely</td>
-          <td class="td-us"><span class="chk">✓</span> Always on</td>
-        </tr>
-        <tr>
-          <td class="td-label">Best Long-Term Value</td>
-          <td class="td-them"><span class="chk">✓</span> Yes</td>
-          <td class="td-them"><span class="crs">✗</span></td>
-          <td class="td-us">Good if you upgrade to buy</td>
-        </tr>
-        <tr>
-          <td class="td-label">Best Right Now</td>
-          <td class="td-them">Requires commitment</td>
-          <td class="td-them"><span class="crs">✗</span></td>
-          <td class="td-us"><span class="chk">✓</span> <span class="hi">Start today</span></td>
-        </tr>
+        <tr><td class="col-label">Setup Cost</td><td class="col-them">$3K–$8K</td><td class="col-them">$500–$2K</td><td class="col-us"><span class="hi">$500 once</span></td></tr>
+        <tr><td class="col-label">Monthly Cost</td><td class="col-them">$1,500–$5,000</td><td class="col-them">$300–$1,500</td><td class="col-us"><span class="hi">$99 flat</span></td></tr>
+        <tr><td class="col-label">Claude AI Agents (21)</td><td class="col-them">Maybe, limited</td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> All 21</td></tr>
+        <tr><td class="col-label">AI Inbound Calls</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them"><span class="check">✓</span></td><td class="col-us"><span class="check">✓</span> Included</td></tr>
+        <tr><td class="col-label">AI Outbound Calls</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them">Extra $$</td><td class="col-us"><span class="check">✓</span> Included</td></tr>
+        <tr><td class="col-label">Cloud Autonomous Agents</td><td class="col-them">Rarely</td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> 24/7</td></tr>
+        <tr><td class="col-label">Live in 24 Hours</td><td class="col-them"><span class="cross">✗</span> Weeks</td><td class="col-them">1–2 weeks</td><td class="col-us"><span class="check">✓</span> 24 hrs</td></tr>
+        <tr><td class="col-label">Rate Locked Forever</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> Guaranteed</td></tr>
+        <tr><td class="col-label">Year 1 Total</td><td class="col-them">$21K–$68K</td><td class="col-them">$4K–$20K</td><td class="col-us"><span class="hi">$1,688</span></td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- HOW -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <div class="section-kicker">How It Works</div>
-    <h2 class="section-h">Pick Up.<br>Drive. Return<br>Whenever.</h2>
-    <div class="how-steps">
-      <div class="hstep">
-        <span class="hstep-icon">📋</span>
-        <div class="hstep-h">Reserve Online</div>
-        <p class="hstep-p">Fill out the form below. <strong>No credit card required.</strong> Pick your class and rental period.</p>
+<!-- Room Plans -->
+<section class="rooms-section" id="rooms">
+  <div class="container">
+    <div class="rooms-header">
+      <div class="section-label">Room Types</div>
+      <h2>Pick Your Room.</h2>
+      <p>Every room includes all 21 agents, the AI call center, and cloud agents. The difference is scale.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-name">STANDARD ROOM</div>
+        <div class="room-desc">One business. Full workforce. No fluff.</div>
+        <div class="room-price">$99</div>
+        <div class="room-period">/MONTH · $500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">All 21 Claude agents</li>
+          <li class="room-feature">AI call center (in + outbound)</li>
+          <li class="room-feature">Cloud autonomous agents</li>
+          <li class="room-feature">1 business location</li>
+          <li class="room-feature">Telegram + dashboard access</li>
+          <li class="room-feature">30-min onboarding call</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-o">Book This Room</a>
       </div>
-      <div class="hstep">
-        <span class="hstep-icon">📞</span>
-        <div class="hstep-h">30-Min Setup Call</div>
-        <p class="hstep-p">We configure your agents with your business info. <strong>You don't touch anything technical.</strong> Same day.</p>
+      <div class="room-card featured">
+        <div class="room-badge">MOST POPULAR</div>
+        <div class="room-name">SUITE</div>
+        <div class="room-desc">Multiple locations. Shared agent pool.</div>
+        <div class="room-price">$249</div>
+        <div class="room-period">/MONTH · $1,500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">Everything in Standard</li>
+          <li class="room-feature">Up to 5 locations</li>
+          <li class="room-feature">Shared agent pool</li>
+          <li class="room-feature">Consolidated dashboard</li>
+          <li class="room-feature">Priority support</li>
+          <li class="room-feature">Weekly performance reports</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-w">Book This Room</a>
       </div>
-      <div class="hstep">
-        <span class="hstep-icon">⚡</span>
-        <div class="hstep-h">Agents Go Live</div>
-        <p class="hstep-p">All 21. Call center. Cloud agents. <strong>Live within 24 hours.</strong> Keys are in your hand.</p>
-      </div>
-      <div class="hstep">
-        <span class="hstep-icon">🦞</span>
-        <div class="hstep-h">Drive</div>
-        <p class="hstep-p">Text them anything via Telegram. <strong>They handle it.</strong> Phone answered. Leads followed up. Content posted.</p>
-      </div>
-      <div class="hstep">
-        <span class="hstep-icon">🔄</span>
-        <div class="hstep-h">Keep or Return</div>
-        <p class="hstep-p">Renew, upgrade to buying, or <strong>cancel with zero fees.</strong> Your call. No hard feelings.</p>
+      <div class="room-card">
+        <div class="room-name">PENTHOUSE</div>
+        <div class="room-desc">White label. Your brand. Resell it.</div>
+        <div class="room-price">$499</div>
+        <div class="room-period">/MONTH · $2,500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">Everything in Suite</li>
+          <li class="room-feature">Full rebrand (your logo/domain)</li>
+          <li class="room-feature">Resell at any price you set</li>
+          <li class="room-feature">You keep 100% margin</li>
+          <li class="room-feature">Unlimited client seats</li>
+          <li class="room-feature">Dedicated support line</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-o">Book This Room</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESERVE FORM -->
-<section class="reserve" id="reserve">
-  <div class="reserve-inner">
-
-    <!-- LEFT -->
-    <div class="reserve-left">
-      <div class="section-kicker">Reservations</div>
-      <h2 class="section-h">Reserve<br>Your Fleet.</h2>
-      <p class="section-sub">No setup fee. No contract. We confirm within 2 hours and you're live same day. The lobster is waiting at the counter.</p>
-
-      <!-- Three lobsters waiting at counter -->
-      <div class="reserve-lobs">
-        <!-- lobster 1 -->
-        <div class="rlob">
-          <svg width="72" height="92" viewBox="0 0 72 92" fill="none">
-            <ellipse cx="36" cy="88" rx="20" ry="4" fill="rgba(0,0,0,0.15)"/>
-            <ellipse cx="36" cy="68" rx="14" ry="16" fill="#DD3D00"/>
-            <path d="M23 62 L18 78 Q36 84 54 78 L49 62 Q43 66 36 67 Q29 66 23 62Z" fill="#1a1a1a"/>
-            <rect x="33" y="65" width="6" height="14" rx="1" fill="white"/>
-            <polygon points="36,67 34.5,70 36,79 37.5,70" fill="#FF5C00"/>
-            <ellipse cx="36" cy="44" rx="13" ry="12" fill="#EE4D00"/>
-            <circle cx="29" cy="41" r="4.5" fill="white"/>
-            <circle cx="43" cy="41" r="4.5" fill="white"/>
-            <circle cx="30" cy="41" r="2.2" fill="#111"/>
-            <circle cx="44" cy="41" r="2.2" fill="#111"/>
-            <circle cx="30.8" cy="40.2" r="0.9" fill="white"/>
-            <circle cx="44.8" cy="40.2" r="0.9" fill="white"/>
-            <path d="M26 35 Q30 32 35 35" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <line x1="37" y1="34" x2="46" y2="35" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-            <path d="M31 50 Q36 53 41 50" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <path d="M41 50 Q43 48.5 41 50" stroke="#111" stroke-width="1.2" fill="none"/>
-            <line x1="29" y1="33" x2="22" y2="26" stroke="#CC3300" stroke-width="1.8" stroke-linecap="round"/>
-            <line x1="43" y1="33" x2="50" y2="26" stroke="#CC3300" stroke-width="1.8" stroke-linecap="round"/>
-            <!-- headset -->
-            <path d="M24 40 Q36 33 48 40" stroke="#111" stroke-width="3" fill="none"/>
-            <ellipse cx="24" cy="42" rx="5" ry="6" fill="#111"/>
-            <ellipse cx="48" cy="42" rx="5" ry="6" fill="#111"/>
-            <path d="M48 46 Q54 51 55 57" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <circle cx="56" cy="59" r="2.5" fill="#222"/>
-            <circle cx="56" cy="59" r="1.5" fill="#00FF88"/>
-            <path d="M21 63 Q11 58 7 64" stroke="#DD3D00" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="5" cy="68" rx="8" ry="5" fill="#DD3D00"/>
-            <path d="M51 63 Q61 58 65 64" stroke="#DD3D00" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="67" cy="68" rx="8" ry="5" fill="#DD3D00"/>
-          </svg>
-          <span class="rlob-name">DIAL</span>
+<!-- Check In Form -->
+<section id="checkin" class="checkin-section">
+  <div class="container" style="text-align:center;">
+    <div class="section-label" style="color:var(--yellow);">Check In</div>
+    <h2 style="font-family:'Righteous',cursive; font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px;">Your Agents Are<br>Waiting at the Desk.</h2>
+    <p style="color:rgba(255,255,255,0.65); font-weight:300; font-size:1rem; max-width:500px; margin:0 auto;">Fill this out. We'll reach out within 24 hours to schedule your 30-minute setup call. Agents go live same day.</p>
+    <div class="form-wrap">
+      <form id="claw-form" data-product="econoclaw" style="display:flex;flex-direction:column;gap:14px;">
+        <div class="form-row">
+          <div class="form-field"><label>First Name</label><input name="firstName" required placeholder="First Name"></div>
+          <div class="form-field"><label>Last Name</label><input name="lastName" placeholder="Last Name"></div>
         </div>
-        <!-- lobster 2 bigger center -->
-        <div class="rlob">
-          <svg width="88" height="112" viewBox="0 0 88 112" fill="none">
-            <ellipse cx="44" cy="108" rx="24" ry="4" fill="rgba(0,0,0,0.15)"/>
-            <ellipse cx="44" cy="84" rx="17" ry="19" fill="#DD3D00"/>
-            <path d="M29 76 L23 96 Q44 103 65 96 L59 76 Q52 81 44 82 Q36 81 29 76Z" fill="#1a1a1a"/>
-            <rect x="40" y="80" width="8" height="17" rx="1" fill="white"/>
-            <polygon points="44,82 42,86 44,97 46,86" fill="#FF5C00"/>
-            <ellipse cx="44" cy="55" rx="17" ry="15" fill="#EE4D00"/>
-            <circle cx="35" cy="51" r="6" fill="white"/>
-            <circle cx="53" cy="51" r="6" fill="white"/>
-            <circle cx="36.5" cy="51" r="3" fill="#111"/>
-            <circle cx="54.5" cy="51" r="3" fill="#111"/>
-            <circle cx="37.5" cy="50" r="1.2" fill="white"/>
-            <circle cx="55.5" cy="50" r="1.2" fill="white"/>
-            <path d="M29 44 Q35 40 41 44" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M47 42 Q53 46 59 44" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M37 62 Q44 67 51 62" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M51 62 Q53.5 60 51 62" stroke="#111" stroke-width="1.5" fill="none"/>
-            <line x1="35" y1="42" x2="26" y2="32" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-            <line x1="53" y1="42" x2="62" y2="32" stroke="#CC3300" stroke-width="2" stroke-linecap="round"/>
-            <path d="M29 50 Q44 41 59 50" stroke="#111" stroke-width="3.5" fill="none"/>
-            <ellipse cx="29" cy="52" rx="6" ry="7.5" fill="#111"/>
-            <ellipse cx="59" cy="52" rx="6" ry="7.5" fill="#111"/>
-            <path d="M59 57 Q66 62 68 69" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="70" cy="72" rx="4" ry="3" fill="#222"/>
-            <circle cx="70" cy="72" r="2" fill="#00FF88"/>
-            <path d="M27 78 Q14 71 8 78" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <ellipse cx="5" cy="84" rx="10" ry="7" fill="#DD3D00"/>
-            <path d="M61 78 Q74 71 80 78" stroke="#DD3D00" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <ellipse cx="83" cy="84" rx="10" ry="7" fill="#DD3D00"/>
-          </svg>
-          <span class="rlob-name">MUXI</span>
+        <div class="form-field"><label>Business Name</label><input name="businessName" placeholder="Business Name"></div>
+        <div class="form-field"><label>Email</label><input name="email" type="email" required placeholder="your@email.com"></div>
+        <div class="form-field"><label>Phone</label><input name="phone" type="tel" placeholder="(850) 000-0000"></div>
+        <div class="form-field">
+          <label>Which Room?</label>
+          <select name="selectedPlan">
+            <option value="">Choose your room...</option>
+            <option value="Standard Room — $500 + $99/mo">Standard Room — $500 + $99/mo</option>
+            <option value="Suite — $1,500 + $249/mo">Suite — $1,500 + $249/mo</option>
+            <option value="Penthouse (White Label) — $2,500 + $499/mo">Penthouse (White Label) — $2,500 + $499/mo</option>
+            <option value="Not sure yet — just want to talk">Not sure yet — just want to talk</option>
+          </select>
         </div>
-        <!-- lobster 3 -->
-        <div class="rlob">
-          <svg width="72" height="92" viewBox="0 0 72 92" fill="none">
-            <ellipse cx="36" cy="88" rx="20" ry="4" fill="rgba(0,0,0,0.15)"/>
-            <ellipse cx="36" cy="68" rx="14" ry="16" fill="#DD3D00"/>
-            <path d="M23 62 L18 78 Q36 84 54 78 L49 62 Q43 66 36 67 Q29 66 23 62Z" fill="#00205B"/>
-            <rect x="33" y="65" width="6" height="14" rx="1" fill="white"/>
-            <polygon points="36,67 34.5,70 36,79 37.5,70" fill="#FF5C00"/>
-            <ellipse cx="36" cy="44" rx="13" ry="12" fill="#EE4D00"/>
-            <circle cx="29" cy="41" r="4.5" fill="white"/>
-            <circle cx="43" cy="41" r="4.5" fill="white"/>
-            <!-- reading glasses - navy suit senior -->
-            <circle cx="29" cy="43" r="6" stroke="#888" stroke-width="1.5" fill="none"/>
-            <circle cx="43" cy="43" r="6" stroke="#888" stroke-width="1.5" fill="none"/>
-            <line x1="35" y1="43" x2="37" y2="43" stroke="#888" stroke-width="1.5"/>
-            <circle cx="30" cy="41" r="2.2" fill="#111"/>
-            <circle cx="44" cy="41" r="2.2" fill="#111"/>
-            <circle cx="30.8" cy="40.2" r="0.9" fill="white"/>
-            <circle cx="44.8" cy="40.2" r="0.9" fill="white"/>
-            <line x1="27" y1="35" x2="35" y2="35" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-            <line x1="37" y1="35" x2="45" y2="35" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-            <path d="M31 50 Q36 53 41 51" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <line x1="29" y1="33" x2="22" y2="26" stroke="#CC3300" stroke-width="1.8" stroke-linecap="round"/>
-            <line x1="43" y1="33" x2="50" y2="26" stroke="#CC3300" stroke-width="1.8" stroke-linecap="round"/>
-            <!-- keys in claw -->
-            <path d="M21 63 Q11 58 7 64" stroke="#DD3D00" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="5" cy="68" rx="8" ry="5" fill="#DD3D00"/>
-            <circle cx="2" cy="64" r="3.5" stroke="#FFD200" stroke-width="2" fill="none"/>
-            <line x1="5" y1="66" x2="9" y2="70" stroke="#FFD200" stroke-width="2" stroke-linecap="round"/>
-            <path d="M51 63 Q61 58 65 64" stroke="#DD3D00" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="67" cy="68" rx="8" ry="5" fill="#DD3D00"/>
-          </svg>
-          <span class="rlob-name">SCRIBE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- FORM -->
-    <div class="reserve-form">
-      <div class="form-head">🦞 Rental Reservation</div>
-      <form action="https://formspree.io/f/mnjgqrpv" method="POST">
-        <div class="f-row">
-          <div class="f-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
-          <div class="f-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required></div>
-        </div>
-        <div class="f-field"><label>Business Name</label><input type="text" name="business_name" placeholder="Your Business" required></div>
-        <div class="f-field"><label>Email</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
-        <div class="f-field"><label>Phone</label><input type="tel" name="phone" placeholder="(850) 000-0000"></div>
-        <div class="f-row">
-          <div class="f-field">
-            <label>Fleet Class</label>
-            <select name="agent_class" required>
-              <option value="">Select class...</option>
-              <option>Economy — Solo ($9/day)</option>
-              <option>Midsize — Multi-location ($29/day)</option>
-              <option>Full Size — White Label ($59/day)</option>
-            </select>
-          </div>
-          <div class="f-field">
-            <label>Rental Period</label>
-            <select name="rental_period" required>
-              <option value="">Select...</option>
-              <option>Daily</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
-              <option>Annual</option>
-            </select>
-          </div>
-        </div>
-        <div class="f-field"><label>What do you need them to do?</label><textarea name="goals" rows="3" placeholder="Answer phones, follow up leads, write content, post on social, run reports..."></textarea></div>
-        <input type="hidden" name="source" value="BudgetRentAClaw Landing Page">
-        <button type="submit" class="f-submit">🦞 Reserve My Agents →</button>
+        <div class="form-field"><label>What do you need your agents to do? (optional)</label><textarea name="needs" rows="3" placeholder="Answer phones, follow up leads, write content, monitor competitors..."></textarea></div>
+        <div id="claw-form-status" style="display:none;padding:14px;border-radius:3px;font-size:14px;font-weight:bold;text-align:center;"></div>
+        <button type="submit" id="claw-submit" class="form-submit">Check In — Deploy My Agents →</button>
       </form>
-      <p class="f-note">No credit card required. Confirmed within 2 hours. Live within 24.</p>
+      <p class="form-note">No commitment required. We talk, configure, and deploy — or you walk, no charge.</p>
+      <script>
+      (function() {
+        const INTAKE_URL = 'https://claw-dialer.vercel.app/api/intake';
+        const form = document.getElementById('claw-form');
+        const statusEl = document.getElementById('claw-form-status');
+        const submitBtn = document.getElementById('claw-submit');
+        if (!form) return;
+        const product = form.dataset.product || 'econoclaw';
+        function setStatus(msg, type) {
+          statusEl.style.display = 'block';
+          statusEl.textContent = msg;
+          statusEl.style.background = type === 'success' ? '#0D2E1A' : type === 'error' ? '#2E0D0D' : '#0D1825';
+          statusEl.style.color = type === 'success' ? '#2EFF9A' : type === 'error' ? '#FF3B3B' : '#14F1C6';
+          statusEl.style.border = 'none';
+        }
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.6';
+          submitBtn.textContent = 'Sending...';
+          setStatus('Routing to Chase...', 'info');
+          const data = {
+            product,
+            firstName: form.querySelector('[name="firstName"]')?.value?.trim() || '',
+            lastName: form.querySelector('[name="lastName"]')?.value?.trim() || '',
+            businessName: form.querySelector('[name="businessName"]')?.value?.trim() || '',
+            email: form.querySelector('[name="email"]')?.value?.trim() || '',
+            phone: form.querySelector('[name="phone"]')?.value?.trim() || '',
+            selectedPlan: form.querySelector('[name="selectedPlan"]')?.value || '',
+            needs: form.querySelector('[name="needs"]')?.value?.trim() || '',
+          };
+          try {
+            const r = await fetch(INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const result = await r.json();
+            if (!r.ok) throw new Error(result.error || 'Something went wrong.');
+            setStatus('✓ Got it, ' + data.firstName + '. Chase will reach out within 24 hours. Check your email.', 'success');
+            submitBtn.textContent = '✓ Submitted';
+            submitBtn.style.background = '#2EFF9A';
+            submitBtn.style.color = '#080A0F';
+          } catch (err) {
+            setStatus('Something went wrong — email chase@solanasolarsolutions.com directly or call (850) 341-4324.', 'error');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.textContent = 'Try Again';
+          }
+        });
+      })();
+      </script>
     </div>
-
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="foot-inner">
-    <div>
-      <div class="foot-logo">Budget Rent-A-<span>Claw</span>™</div>
-      <div class="foot-sub">by Solana Solar Solutions · Pensacola, FL · Claude-Powered</div>
-    </div>
-    <div class="foot-links">
-      <a href="#fleet">The Fleet</a>
-      <a href="#included">What's Included</a>
-      <a href="#compare">Compare</a>
-      <a href="#how">How It Works</a>
-      <a href="#reserve">Reserve</a>
-      <a href="mailto:chase@solanasolarsolutions.com">Contact</a>
-    </div>
+  <div class="footer-logo">Econo<span>Claw</span></div>
+  <div class="footer-sub">BY SOLANA SOLAR SOLUTIONS · PENSACOLA, FL · CLAUDE-POWERED</div>
+  <div class="footer-links">
+    <a href="/cdn-cgi/l/email-protection#cba8a3aab8ae8bb8a4a7aaa5aab8a4a7aab9b8a4a7bebfa2a4a5b8e5a8a4a6">Contact</a>
+    <a href="#what-you-get">Amenities</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#checkin">Check In</a>
   </div>
-  <div class="foot-copy">© 2026 Solana Solar Solutions · Chase K Turnquest · EIN 41-2326568 · All rights reserved</div>
-</footer>
-
-<script>
-  // Rate pill interactivity
-  document.querySelectorAll('.rate').forEach(r => {
-    r.addEventListener('click', () => {
-      document.querySelectorAll('.rate').forEach(x => x.classList.remove('active'));
-      r.classList.add('active');
-    });
-  });
-</script>
-</body>
-</html>
+  <div class="footer-copy">© 2026 Solana Solar Solutions · Chase K Turnquest · EIN 41-2326568 ·
