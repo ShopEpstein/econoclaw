@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EconoClaw — Claude AI Agents. Budget Price. No Nonsense.</title>
+<meta name="description" content="Get a full Claude-powered AI workforce deployed for your business. 21 agents, AI call center, cloud automation. $500 setup + $99/mo. Clean rooms. Hot coffee. Claude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2E7D32;
+    --green-light: #4CAF50;
+    --green-pale: #E8F5E9;
+    --yellow: #FFC107;
+    --brown: #5D4037;
+    --white: #FAFAF8;
+    --off: #F5F3EE;
+    --dark: #1A1A1A;
+    --text: #2C2C2C;
+    --muted: #6B6B6B;
+    --border: #D4D0C8;
+    --sign-red: #C62828;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  .marquee-sign {
+    background: var(--sign-red);
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 28s linear infinite;
+    font-family: 'Righteous', cursive;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+  }
+  .marquee-inner span { margin: 0 40px; }
+  @keyframes marquee {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
+
+  header { background: var(--green); padding: 0; }
+  .sign-outer { background: var(--green); padding: 32px 24px 0; text-align: center; }
+  .sign-poles { display: flex; justify-content: center; gap: 200px; margin-bottom: -2px; }
+  .pole { width: 12px; height: 40px; background: linear-gradient(to right, #555, #888, #555); border-radius: 2px; }
+  .sign-board {
+    background: var(--white);
+    border: 6px solid var(--yellow);
+    border-bottom: none;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 28px 40px 24px;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 0 0 3px rgba(255,193,7,0.2);
+  }
+  .sign-board::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 0;
+    border: 2px dashed rgba(255,193,7,0.35);
+    pointer-events: none;
+  }
+  .sign-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 5px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+  .sign-name { font-family: 'Righteous', cursive; font-size: clamp(3rem, 12vw, 6rem); color: var(--green); line-height: 1; }
+  .sign-name .claw { color: var(--sign-red); }
+  .sign-tagline { font-size: 1rem; font-weight: 400; color: var(--muted); margin-top: 8px; font-style: italic; }
+  .sign-stars { display: flex; justify-content: center; gap: 4px; margin-top: 12px; font-size: 1.1rem; align-items: center; }
+  .sign-stars span { font-size: 0.75rem; color: var(--muted); margin-left: 8px; font-style: italic; }
+
+  .mascot-wrap { background: var(--green); display: flex; justify-content: center; padding: 24px 0 0; }
+  .crab { font-size: 80px; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); animation: crabBob 3s ease-in-out infinite; }
+  @keyframes crabBob {
+    0%,100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+
+  .checkin-bar { background: var(--yellow); text-align: center; padding: 16px 24px; font-family: 'Righteous', cursive; font-size: 1rem; color: var(--dark); letter-spacing: 1px; border-bottom: 4px solid #b8860b; }
+  .checkin-bar span { color: var(--green); }
+
+  nav { background: var(--white); border-bottom: 3px solid var(--green); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .nav-logo { font-family: 'Righteous', cursive; font-size: 1.3rem; color: var(--green); }
+  .nav-logo span { color: var(--sign-red); }
+  .nav-cta { background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; padding: 10px 24px; border: none; cursor: pointer; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--sign-red); }
+
+  .hero { background: var(--white); padding: 72px 24px; border-bottom: 4px solid var(--border); }
+  .hero-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .hero-left h1 { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--green); line-height: 1.2; margin-bottom: 20px; }
+  .hero-left h1 em { font-style: normal; color: var(--sign-red); }
+  .hero-left p { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+  .hero-left p strong { color: var(--text); font-weight: 600; }
+  .rate-card { background: var(--green); color: #fff; padding: 28px 32px; display: inline-block; position: relative; margin-bottom: 28px; }
+  .rate-card::before { content: 'NIGHTLY RATE'; position: absolute; top: -11px; left: 16px; background: var(--yellow); color: var(--dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 3px 12px; }
+  .rate-amount { font-family: 'Righteous', cursive; font-size: 3.5rem; line-height: 1; }
+  .rate-amount sub { font-size: 1.4rem; }
+  .rate-period { font-size: 0.8rem; opacity: 0.7; letter-spacing: 2px; margin-top: 4px; }
+  .rate-setup { font-size: 0.85rem; opacity: 0.85; margin-top: 8px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-green { background: var(--green); color: #fff; font-weight: 600; font-size: 0.95rem; padding: 16px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; border-radius: 2px; }
+  .btn-green:hover { background: var(--sign-red); }
+  .btn-outline { background: transparent; color: var(--green); font-weight: 600; font-size: 0.95rem; padding: 16px 32px; border: 2px solid var(--green); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; border-radius: 2px; }
+  .btn-outline:hover { background: var(--green); color: #fff; }
+
+  .amenities-board { background: var(--off); border: 3px solid var(--border); padding: 32px 28px; position: relative; }
+  .amenities-board::before { content: '★ AMENITIES INCLUDED ★'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--green); color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 4px 16px; white-space: nowrap; }
+  .amenity { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .amenity:last-child { border-bottom: none; }
+  .amenity-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .amenity-text h4 { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 2px; }
+  .amenity-text p { font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.5; }
+  .new-badge { background: var(--sign-red); color: #fff; font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; padding: 2px 7px; margin-left: 6px; vertical-align: middle; }
+
+  section { padding: 80px 24px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 5px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3rem); color: var(--green); line-height: 1.2; margin-bottom: 12px; }
+
+  .included-section { background: var(--white); }
+  .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3px; margin-top: 40px; }
+  .included-card { background: var(--off); padding: 36px 28px; border-left: 4px solid transparent; transition: border-color 0.2s; }
+  .included-card:hover { border-left-color: var(--green); }
+  .included-icon { font-size: 2rem; margin-bottom: 16px; }
+  .included-card h3 { font-family: 'Righteous', cursive; font-size: 1.1rem; color: var(--green); margin-bottom: 10px; }
+  .included-card p { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
+  .included-card p strong { color: var(--text); font-weight: 600; }
+
+  .directory-section { background: var(--off); }
+  .directory-board { background: var(--white); border: 3px solid var(--border); overflow: hidden; margin-top: 40px; }
+  .directory-header { background: var(--green); color: #fff; padding: 16px 24px; font-family: 'Righteous', cursive; font-size: 1rem; letter-spacing: 2px; display: flex; justify-content: space-between; align-items: center; }
+  .directory-header span { font-size: 0.75rem; opacity: 0.7; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .agent-row { display: grid; grid-template-columns: 140px 1fr auto; border-bottom: 1px solid var(--border); align-items: center; }
+  .agent-row:last-child { border-bottom: none; }
+  .agent-row:hover { background: var(--green-pale); }
+  .agent-num { padding: 13px 20px; font-family: 'Righteous', cursive; font-size: 0.9rem; color: var(--green); border-right: 1px solid var(--border); }
+  .agent-info { padding: 13px 20px; }
+  .agent-title { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+  .agent-dept { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+  .agent-status { padding: 13px 20px; font-size: 0.72rem; font-weight: 600; color: var(--green-light); letter-spacing: 1px; white-space: nowrap; }
+  .agent-status.voice { color: var(--sign-red); }
+  .agent-status.cloud { color: var(--brown); }
+
+  .vs-section { background: var(--dark); color: #fff; }
+  .vs-section .section-label { color: var(--yellow); }
+  .vs-section .section-title { color: #fff; }
+  .vs-table { width: 100%; border-collapse: collapse; margin-top: 40px; font-size: 0.9rem; }
+  .vs-table th { font-family: 'Righteous', cursive; font-size: 0.88rem; letter-spacing: 1px; padding: 18px 20px; text-align: left; }
+  .vs-table th.col-them { background: #222; color: #888; }
+  .vs-table th.col-us { background: var(--green); color: #fff; }
+  .vs-table th.col-label { color: #555; }
+  .vs-table td { padding: 13px 20px; border-bottom: 1px solid #2a2a2a; }
+  .vs-table td.col-label { color: #999; font-weight: 500; }
+  .vs-table td.col-them { background: #161616; color: #666; }
+  .vs-table td.col-us { background: #0d1f0e; color: #ccc; }
+  .check { color: #4CAF50; font-weight: 700; }
+  .cross { color: #444; }
+  .hi { color: var(--green-light); font-weight: 600; }
+
+  .rooms-section { background: var(--green-pale); }
+  .rooms-header { text-align: center; margin-bottom: 48px; }
+  .rooms-header h2 { font-family: 'Righteous', cursive; font-size: clamp(2rem, 5vw, 3rem); color: var(--green); }
+  .rooms-header p { font-size: 1rem; color: var(--muted); margin-top: 12px; font-weight: 300; }
+  .rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3px; }
+  .room-card { background: var(--white); padding: 40px 32px; border-top: 5px solid var(--border); position: relative; transition: border-top-color 0.2s; }
+  .room-card:hover { border-top-color: var(--green); }
+  .room-card.featured { border-top-color: var(--yellow); background: var(--green); color: #fff; }
+  .room-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--yellow); color: var(--dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; padding: 4px 16px; white-space: nowrap; }
+  .room-name { font-family: 'Righteous', cursive; font-size: 1.1rem; color: var(--green); letter-spacing: 1px; margin-bottom: 4px; }
+  .room-card.featured .room-name { color: var(--yellow); }
+  .room-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+  .room-card.featured .room-desc { color: rgba(255,255,255,0.6); }
+  .room-price { font-family: 'Righteous', cursive; font-size: 2.8rem; color: var(--green); line-height: 1; }
+  .room-card.featured .room-price { color: var(--yellow); }
+  .room-period { font-size: 0.8rem; color: var(--muted); letter-spacing: 2px; margin-bottom: 28px; margin-top: 4px; }
+  .room-card.featured .room-period { color: rgba(255,255,255,0.5); }
+  .room-features { list-style: none; margin-bottom: 32px; }
+  .room-feature { font-size: 0.88rem; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text); }
+  .room-card.featured .room-feature { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+  .room-feature::before { content: '✓  '; color: var(--green); font-weight: 700; }
+  .room-card.featured .room-feature::before { color: var(--yellow); }
+  .room-btn { display: block; text-align: center; padding: 15px; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; text-decoration: none; transition: all 0.2s; cursor: pointer; border-radius: 2px; }
+  .btn-g { background: var(--green); color: #fff; border: 2px solid var(--green); }
+  .btn-g:hover { background: var(--sign-red); border-color: var(--sign-red); }
+  .btn-o { background: transparent; color: var(--green); border: 2px solid var(--green); }
+  .btn-o:hover { background: var(--green); color: #fff; }
+  .btn-w { background: #fff; color: var(--green); border: 2px solid #fff; }
+  .btn-w:hover { background: var(--yellow); border-color: var(--yellow); color: var(--dark); }
+
+  .checkin-section { background: var(--green); color: #fff; }
+  .form-wrap { max-width: 600px; margin: 40px auto 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .form-field label { font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; color: rgba(255,255,255,0.55); text-transform: uppercase; }
+  .form-field input, .form-field select, .form-field textarea { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.2s; width: 100%; border-radius: 2px; }
+  .form-field input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-field input:focus, .form-field select:focus { border-color: var(--yellow); }
+  .form-field select option { background: #1a4a1a; }
+  .form-submit { width: 100%; background: var(--yellow); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 2px; padding: 18px; border: none; cursor: pointer; text-transform: uppercase; transition: background 0.2s; margin-top: 8px; border-radius: 2px; }
+  .form-submit:hover { background: #fff; }
+  .form-note { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 14px; font-weight: 300; }
+
+  footer { background: var(--dark); padding: 48px 24px; text-align: center; border-top: 4px solid var(--green); }
+  .footer-logo { font-family: 'Righteous', cursive; font-size: 1.8rem; color: var(--green); margin-bottom: 4px; }
+  .footer-logo span { color: var(--sign-red); }
+  .footer-sub { font-size: 0.75rem; color: #555; letter-spacing: 2px; margin-bottom: 24px; font-weight: 300; }
+  .footer-links { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .footer-links a { color: #666; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green); }
+  .footer-copy { font-size: 0.72rem; color: #333; font-weight: 300; }
+
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .agent-row { grid-template-columns: 100px 1fr; }
+    .agent-status { display: none; }
+    nav { padding: 14px 20px; }
+    .sign-poles { gap: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="marquee-sign">
+  <div class="marquee-inner">
+    <span>NOW DEPLOYING CLAUDE AI AGENTS</span><span>★</span>
+    <span>FREE WIFI</span><span>★</span>
+    <span>AI CALL CENTER INCLUDED</span><span>★</span>
+    <span>CLOUD AGENTS 24/7</span><span>★</span>
+    <span>$99/MO</span><span>★</span>
+    <span>NO CHECKOUT TIME</span><span>★</span>
+    <span>NOW DEPLOYING CLAUDE AI AGENTS</span><span>★</span>
+    <span>FREE WIFI</span><span>★</span>
+    <span>AI CALL CENTER INCLUDED</span><span>★</span>
+    <span>CLOUD AGENTS 24/7</span><span>★</span>
+    <span>$99/MO</span><span>★</span>
+    <span>NO CHECKOUT TIME</span><span>★</span>
+  </div>
+</div>
+
+<header>
+  <div class="sign-outer">
+    <div class="sign-poles"><div class="pole"></div><div class="pole"></div></div>
+    <div class="sign-board">
+      <div class="sign-eyebrow">Claude-Powered AI Deployment</div>
+      <div class="sign-name">Econo<span class="claw">Claw</span></div>
+      <div class="sign-tagline">"Clean agents. Hot leads. Honest price."</div>
+      <div class="sign-stars">⭐⭐⭐⭐⭐ <span>5,000+ agents deployed</span></div>
+    </div>
+  </div>
+  <div class="mascot-wrap"><div class="crab">🦞</div></div>
+</header>
+
+<div class="checkin-bar">
+  ✅ CHECK-IN ANYTIME &nbsp;·&nbsp; <span>CLAUDE AGENTS READY</span> &nbsp;·&nbsp; LIVE IN 24 HOURS &nbsp;·&nbsp; NO RESERVATION REQUIRED
+</div>
+
+<nav>
+  <div class="nav-logo">Econo<span>Claw</span></div>
+  <a href="#checkin" class="nav-cta">Check In Now</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>A Full Claude AI<br>Workforce for<br><em>$99 a Month.</em></h1>
+      <p>
+        21 Claude-powered agents, an AI call center that <strong>answers and makes calls</strong>, 
+        and cloud agents that run 24/7 without you lifting a finger.
+        No agency markup. No retainer theater. Just Claude, working for your business, every day.
+      </p>
+      <div class="rate-card">
+        <div class="rate-amount">$99<sub>/mo</sub></div>
+        <div class="rate-period">+ $500 ONE-TIME SETUP · RATE LOCKED FOREVER</div>
+        <div class="rate-setup">Agencies charge $5,000–$15,000/mo for this.</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#checkin" class="btn-green">Check In — Deploy Now</a>
+        <a href="#rooms" class="btn-outline">See All Plans</a>
+      </div>
+    </div>
+    <div>
+      <div class="amenities-board">
+        <div class="amenity">
+          <div class="amenity-icon">🧠</div>
+          <div class="amenity-text">
+            <h4>21 Claude AI Agents</h4>
+            <p>Content, data, research, social, security, engineering, brand — fully configured for your business.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">📞</div>
+          <div class="amenity-text">
+            <h4>AI Call Center <span class="new-badge">NEW</span></h4>
+            <p>Answers your phone. Makes outbound calls. Qualifies leads. Books appointments. 24/7, no hold music.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">☁️</div>
+          <div class="amenity-text">
+            <h4>Cloud Agents <span class="new-badge">NEW</span></h4>
+            <p>Always-on autonomous agents. Publish content, trigger workflows, send reports while you sleep.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">📡</div>
+          <div class="amenity-text">
+            <h4>Telegram Command Center</h4>
+            <p>Talk to every agent from your phone. One message, instant action across your whole workforce.</p>
+          </div>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">🔒</div>
+          <div class="amenity-text">
+            <h4>Rate Locked Forever</h4>
+            <p>Founding customer pricing. What you pay today is what you pay forever. No exceptions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What's Included -->
+<section class="included-section" id="what-you-get">
+  <div class="container">
+    <div class="section-label">All Amenities</div>
+    <h2 class="section-title">Everything Included.<br>Nothing Extra.</h2>
+    <p style="color:var(--muted); font-weight:300; font-size:1rem; max-width:560px;">Every EconoClaw deployment ships with all three systems. This is not a chatbot. This is a workforce.</p>
+    <div class="included-grid">
+      <div class="included-card">
+        <div class="included-icon">🧠</div>
+        <h3>21 Claude AI Agents</h3>
+        <p>A full team trained on your business. MUXI the COO orchestrates everything. <strong>SCRIBE writes content. SAGE analyzes data. NOVA builds. VIBE runs social.</strong> 10 lead agents + 10 sub-agents + MUXI. Configured for your industry and goals.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">📞</div>
+        <h3>AI Call Center <span class="new-badge">NEW</span></h3>
+        <p><strong>Inbound:</strong> Answers calls, qualifies leads, handles FAQs, books appointments — all day, all night. <strong>Outbound:</strong> Calls your lead list, follows up on quotes, reactivates cold prospects. Your phone never sleeps and never calls in sick.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">☁️</div>
+        <h3>Cloud Agents <span class="new-badge">NEW</span></h3>
+        <p>Autonomous agents running 24/7. <strong>Set the mission — they execute it.</strong> Schedule and publish content, monitor campaigns, send weekly reports, trigger workflows based on real-time data. No babysitting. No check-ins. Just results.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">🎯</div>
+        <h3>Business-Specific Training</h3>
+        <p>Your agents aren't generic chatbots. They're loaded with <strong>your company's knowledge, tone, FAQs, products, and goals</strong> during a 30-minute onboarding call. They sound like your best employee from day one.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">📡</div>
+        <h3>Telegram Command Center</h3>
+        <p>One interface to rule them all. <strong>Talk to any agent, trigger any workflow, pull any report</strong> — right from Telegram on your phone. No new software to learn. No dashboards to manage. Just type and go.</p>
+      </div>
+      <div class="included-card">
+        <div class="included-icon">⚡</div>
+        <h3>Live in 24 Hours</h3>
+        <p>Fill out the form. Schedule a 30-min call. <strong>Agents are live within 24 hours.</strong> No 6-week implementation. No endless discovery sprints. No agency theater. We move at the speed your business actually needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Agent Directory -->
+<section class="directory-section">
+  <div class="container">
+    <div class="section-label">The Staff</div>
+    <h2 class="section-title">Your 21-Agent Directory</h2>
+    <p style="color:var(--muted); font-weight:300; font-size:1rem;">Every agent. Every role. All reporting for duty.</p>
+    <div class="directory-board">
+      <div class="directory-header">STAFF DIRECTORY — ECONOCLAW DEPLOYMENT <span>ALL AGENTS ON DUTY 24/7</span></div>
+      <div class="agent-row"><div class="agent-num">MUXI</div><div class="agent-info"><div class="agent-title">Chief of Operations</div><div class="agent-dept">Orchestrates all 21 agents · Your AI COO</div></div><div class="agent-status cloud">☁️ COO</div></div>
+      <div class="agent-row"><div class="agent-num">JARVIS</div><div class="agent-info"><div class="agent-title">Chief of Staff / Router</div><div class="agent-dept">Routes tasks · Manages priorities · Delegates</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">DISPATCH</div><div class="agent-info"><div class="agent-title">Task Decomposer</div><div class="agent-dept">Breaks complex goals into executable steps</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SCRIBE</div><div class="agent-info"><div class="agent-title">Content & SEO Writer</div><div class="agent-dept">Blog posts · Landing pages · Ad copy · Articles</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">QUILL</div><div class="agent-info"><div class="agent-title">Email Copywriter</div><div class="agent-dept">Campaigns · Sequences · Cold outreach · Follow-ups</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SAGE</div><div class="agent-info"><div class="agent-title">Data Analyst</div><div class="agent-dept">Reports · Insights · Performance tracking · Forecasts</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">MINER</div><div class="agent-info"><div class="agent-title">Database Segmentation</div><div class="agent-dept">Contact lists · Audience targeting · Lead scoring</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">ATLAS</div><div class="agent-info"><div class="agent-title">Research Lead</div><div class="agent-dept">Market research · Industry analysis · Trend reports</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SCOUT</div><div class="agent-info"><div class="agent-title">Competitive Intelligence</div><div class="agent-dept">Monitors competitors · Flags opportunities</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">NOVA</div><div class="agent-info"><div class="agent-title">Engineer</div><div class="agent-dept">Builds · Deploys · Maintains · Integrates</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PATCH</div><div class="agent-info"><div class="agent-title">Bug Fixer</div><div class="agent-dept">Identifies and resolves issues immediately</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">VIBE</div><div class="agent-info"><div class="agent-title">Social Media Manager</div><div class="agent-dept">Posts · Scheduling · Brand voice · Engagement</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">ECHO</div><div class="agent-info"><div class="agent-title">Engagement Specialist</div><div class="agent-dept">Replies · Comments · Community management</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SENTINEL</div><div class="agent-info"><div class="agent-title">Security & Compliance</div><div class="agent-dept">Monitors risks · Flags policy issues</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">SHIELD</div><div class="agent-info"><div class="agent-title">Compliance Auditor</div><div class="agent-dept">Keeps everything above board and documented</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">TRENDY</div><div class="agent-info"><div class="agent-title">Trend Analyst</div><div class="agent-dept">Spots what's hot before your competitors do</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PULSE</div><div class="agent-info"><div class="agent-title">Market Signals</div><div class="agent-dept">Real-time market intelligence · Opportunity alerts</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">PIXEL</div><div class="agent-info"><div class="agent-title">Design & Brand</div><div class="agent-dept">Visual identity · Templates · Creative assets</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">BRUSH</div><div class="agent-info"><div class="agent-title">Template Builder</div><div class="agent-dept">Builds reusable, branded assets at scale</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">CLIP</div><div class="agent-info"><div class="agent-title">Summarizer</div><div class="agent-dept">Reports · Daily digests · Executive briefings</div></div><div class="agent-status">ACTIVE</div></div>
+      <div class="agent-row"><div class="agent-num">DIAL</div><div class="agent-info"><div class="agent-title">Voice Call Agent</div><div class="agent-dept">Inbound + outbound calls · Lead qualification · Appointment booking · Follow-ups</div></div><div class="agent-status voice">📞 VOICE</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VS -->
+<section class="vs-section">
+  <div class="container">
+    <div class="section-label">The Math</div>
+    <h2 class="section-title" style="color:#fff;">Agencies Charge $5K/mo.<br>We Charge $99.</h2>
+    <p style="color:#666; font-weight:300; font-size:1rem;">Here's exactly what you're not paying for.</p>
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th class="col-label"></th>
+          <th class="col-them">AI Agency</th>
+          <th class="col-them">Call Center Only</th>
+          <th class="col-us">EconoClaw</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="col-label">Setup Cost</td><td class="col-them">$3K–$8K</td><td class="col-them">$500–$2K</td><td class="col-us"><span class="hi">$500 once</span></td></tr>
+        <tr><td class="col-label">Monthly Cost</td><td class="col-them">$1,500–$5,000</td><td class="col-them">$300–$1,500</td><td class="col-us"><span class="hi">$99 flat</span></td></tr>
+        <tr><td class="col-label">Claude AI Agents (21)</td><td class="col-them">Maybe, limited</td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> All 21</td></tr>
+        <tr><td class="col-label">AI Inbound Calls</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them"><span class="check">✓</span></td><td class="col-us"><span class="check">✓</span> Included</td></tr>
+        <tr><td class="col-label">AI Outbound Calls</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them">Extra $$</td><td class="col-us"><span class="check">✓</span> Included</td></tr>
+        <tr><td class="col-label">Cloud Autonomous Agents</td><td class="col-them">Rarely</td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> 24/7</td></tr>
+        <tr><td class="col-label">Live in 24 Hours</td><td class="col-them"><span class="cross">✗</span> Weeks</td><td class="col-them">1–2 weeks</td><td class="col-us"><span class="check">✓</span> 24 hrs</td></tr>
+        <tr><td class="col-label">Rate Locked Forever</td><td class="col-them"><span class="cross">✗</span></td><td class="col-them"><span class="cross">✗</span></td><td class="col-us"><span class="check">✓</span> Guaranteed</td></tr>
+        <tr><td class="col-label">Year 1 Total</td><td class="col-them">$21K–$68K</td><td class="col-them">$4K–$20K</td><td class="col-us"><span class="hi">$1,688</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Room Plans -->
+<section class="rooms-section" id="rooms">
+  <div class="container">
+    <div class="rooms-header">
+      <div class="section-label">Room Types</div>
+      <h2>Pick Your Room.</h2>
+      <p>Every room includes all 21 agents, the AI call center, and cloud agents. The difference is scale.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-name">STANDARD ROOM</div>
+        <div class="room-desc">One business. Full workforce. No fluff.</div>
+        <div class="room-price">$99</div>
+        <div class="room-period">/MONTH · $500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">All 21 Claude agents</li>
+          <li class="room-feature">AI call center (in + outbound)</li>
+          <li class="room-feature">Cloud autonomous agents</li>
+          <li class="room-feature">1 business location</li>
+          <li class="room-feature">Telegram + dashboard access</li>
+          <li class="room-feature">30-min onboarding call</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-o">Book This Room</a>
+      </div>
+      <div class="room-card featured">
+        <div class="room-badge">MOST POPULAR</div>
+        <div class="room-name">SUITE</div>
+        <div class="room-desc">Multiple locations. Shared agent pool.</div>
+        <div class="room-price">$249</div>
+        <div class="room-period">/MONTH · $1,500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">Everything in Standard</li>
+          <li class="room-feature">Up to 5 locations</li>
+          <li class="room-feature">Shared agent pool</li>
+          <li class="room-feature">Consolidated dashboard</li>
+          <li class="room-feature">Priority support</li>
+          <li class="room-feature">Weekly performance reports</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-w">Book This Room</a>
+      </div>
+      <div class="room-card">
+        <div class="room-name">PENTHOUSE</div>
+        <div class="room-desc">White label. Your brand. Resell it.</div>
+        <div class="room-price">$499</div>
+        <div class="room-period">/MONTH · $2,500 SETUP</div>
+        <ul class="room-features">
+          <li class="room-feature">Everything in Suite</li>
+          <li class="room-feature">Full rebrand (your logo/domain)</li>
+          <li class="room-feature">Resell at any price you set</li>
+          <li class="room-feature">You keep 100% margin</li>
+          <li class="room-feature">Unlimited client seats</li>
+          <li class="room-feature">Dedicated support line</li>
+          <li class="room-feature">Rate locked forever</li>
+        </ul>
+        <a href="#checkin" class="room-btn btn-o">Book This Room</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Check In Form -->
+<section id="checkin" class="checkin-section">
+  <div class="container" style="text-align:center;">
+    <div class="section-label" style="color:var(--yellow);">Check In</div>
+    <h2 style="font-family:'Righteous',cursive; font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px;">Your Agents Are<br>Waiting at the Desk.</h2>
+    <p style="color:rgba(255,255,255,0.65); font-weight:300; font-size:1rem; max-width:500px; margin:0 auto;">Fill this out. We'll reach out within 24 hours to schedule your 30-minute setup call. Agents go live same day.</p>
+    <div class="form-wrap">
+      <form action="https://formspree.io/f/mnjgqrpv" method="POST">
+        <div class="form-row">
+          <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
+          <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required></div>
+        </div>
+        <div class="form-field"><label>Business Name</label><input type="text" name="business_name" placeholder="Your Business" required></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
+        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="(850) 000-0000"></div>
+        <div class="form-field">
+          <label>Which Room?</label>
+          <select name="plan" required>
+            <option value="">Choose your room...</option>
+            <option value="standard">Standard Room — $500 + $99/mo</option>
+            <option value="suite">Suite — $1,500 + $249/mo</option>
+            <option value="penthouse">Penthouse (White Label) — $2,500 + $499/mo</option>
+            <option value="unsure">Not sure yet — just want to talk</option>
+          </select>
+        </div>
+        <div class="form-field"><label>What do you need your agents to do? (optional)</label><textarea name="goals" rows="3" placeholder="Answer phones, follow up leads, write content, monitor competitors..."></textarea></div>
+        <input type="hidden" name="source" value="EconoClaw Landing Page">
+        <button type="submit" class="form-submit">Check In — Deploy My Agents →</button>
+      </form>
+      <p class="form-note">No commitment required. We talk, configure, and deploy — or you walk, no charge.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Econo<span>Claw</span></div>
+  <div class="footer-sub">BY SOLANA SOLAR SOLUTIONS · PENSACOLA, FL · CLAUDE-POWERED</div>
+  <div class="footer-links">
+    <a href="mailto:chase@solanasolarsolutions.com">Contact</a>
+    <a href="#what-you-get">Amenities</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#checkin">Check In</a>
+  </div>
+  <div class="footer-copy">© 2026 Solana Solar Solutions · Chase K Turnquest · EIN 41-2326568 · All rights reserved</div>
+</footer>
+
+</body>
+</html>
